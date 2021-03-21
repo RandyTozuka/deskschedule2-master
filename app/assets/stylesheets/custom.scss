@@ -1,0 +1,30 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.wrapper{
+  width: 80%;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+
+input[type="date"] {
+        width: 200px;
+        height: 30px;
+    }
+
+.schedule-input-btn{
+  width: 200px;
+  height: 50px;
+  // padding: 15px;
+  font-size: 25px;
+}
+
+.paging{
+  display: flex;
+  margin-bottom: 30px
+}
+
+.paging h3{
+  margin: 0px 20px;
+}
