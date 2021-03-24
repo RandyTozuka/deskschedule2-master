@@ -1,7 +1,7 @@
 <div class="container">
   <h1>adminのページ</h1>
   <h1>現在の管理対象者数 <%= @number_of_users-1 %>人</h1>
-  
+
   <table class="workschedule_table table table-hover" >
     <thead>
       <tr>
@@ -12,7 +12,8 @@
         <th style="width:30%">勤務形態</th>
       </tr>
     </thead>
-    <% @ws.each do |f|  %>
+    <!-- この部分↓↓↓を可変させたい -->
+    <% @ws_nextmonth.each do |f|  %>
     <tbody>
       <tr>
         <td><%= User.find(f.user_id).idnum  %></td>
