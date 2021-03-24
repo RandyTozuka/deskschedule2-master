@@ -1,6 +1,5 @@
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/puma-4.3.7/ext/puma_http11
-/Users/randytozuka/.rbenv/versions/2.6.6/bin/ruby -I /Users/randytozuka/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210317-29000-1io3oud.rb extconf.rb
-Ignoring sassc-2.4.0 because its extensions are not built. Try: gem pristine sassc --version 2.4.0
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/puma-4.3.7/ext/puma_http11
+/Users/randytozuka/.rbenv/versions/2.6.6/bin/ruby -I /Users/randytozuka/.rbenv/versions/2.6.6/lib/ruby/site_ruby/2.6.0 -r ./siteconf20210321-2272-1qrs00n.rb extconf.rb
 checking for BIO_read() in -lcrypto... yes
 checking for SSL_CTX_new() in -lssl... yes
 checking for openssl/bio.h... yes
@@ -9,11 +8,11 @@ checking for TLS_server_method() in openssl/ssl.h... yes
 checking for SSL_CTX_set_min_proto_version in openssl/ssl.h... yes
 creating Makefile
 
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/puma-4.3.7/ext/puma_http11
-make "DESTDIR=" clean
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/puma-4.3.7/ext/puma_http11
+make DESTDIR\= clean
 
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/puma-4.3.7/ext/puma_http11
-make "DESTDIR="
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/puma-4.3.7/ext/puma_http11
+make DESTDIR\=
 compiling http11_parser.c
 ext/puma_http11/http11_parser.c:44:18: warning: unused variable 'puma_parser_en_main' [-Wunused-const-variable]
 static const int puma_parser_en_main = 1;
@@ -31,6 +30,6 @@ void raise_error(SSL* ssl, int result) {
 compiling puma_http11.c
 linking shared-object puma/puma_http11.bundle
 
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/puma-4.3.7/ext/puma_http11
-make "DESTDIR=" install
-/usr/bin/install -c -m 0755 puma_http11.bundle ./.gem.20210317-29000-18bm6b8/puma
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/puma-4.3.7/ext/puma_http11
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 puma_http11.bundle ./.gem.20210321-2272-n0y2zq/puma

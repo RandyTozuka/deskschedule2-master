@@ -50,6 +50,8 @@ gem 'kaminari'
 gem 'rubyzip', '>= 1.2.1'
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails'
+# business_time 参考:https://qiita.com/hituziando/items/2bf6dbb29280efb4ad1c
+gem 'business_time'
 #------------------------------------------------------------------
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

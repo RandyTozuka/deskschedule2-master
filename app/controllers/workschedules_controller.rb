@@ -1,8 +1,10 @@
 class WorkschedulesController < ApplicationController
-  # binding.pry
   def index
     if user_signed_in? && current_user.admin?
       @user = current_user
+      @number_of_users = User.all.count
+      # binding.pry
+      @ws = Workschedule.where('wdate >= ?', Date.today.next_month.beginning_of_month)
       @ws= Workschedule.all
       respond_to do |format|
         format.html

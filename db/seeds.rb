@@ -9,3 +9,16 @@
   Status.create!(status: 'リモート')
   Status.create!(status: '会社都合休業')
   Status.create!(status: '年休他')
+
+  # 複数人の user を作る
+  # 参考:https://qiita.com/takehanKosuke/items/79a66751fe95010ea5ee
+  5.times do |n|
+    user = User.new(
+      email: "testman#{n+1}@test.com",
+      password: "testman#{n+1}",
+      password_confirmation: "testman#{n+1}",
+      idnum: "#{n+1}",
+      dep: "営業#{n+1}部"
+    )
+    user.save
+  end

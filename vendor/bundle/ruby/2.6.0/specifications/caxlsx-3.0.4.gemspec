@@ -14,31 +14,23 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/caxlsx/caxlsx".freeze
   s.licenses = ["MIT".freeze]
   s.required_ruby_version = Gem::Requirement.new(">= 2.3".freeze)
-  s.rubygems_version = "3.0.3".freeze
+  s.rubygems_version = "3.2.15".freeze
   s.summary = "Excel OOXML (xlsx) with charts, styles, images and autowidth columns.".freeze
 
-  s.installed_by_version = "3.0.3" if s.respond_to? :installed_by_version
+  s.installed_by_version = "3.2.15" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
+  end
 
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<nokogiri>.freeze, ["~> 1.10", ">= 1.10.4"])
-      s.add_runtime_dependency(%q<rubyzip>.freeze, [">= 1.3.0", "< 3"])
-      s.add_runtime_dependency(%q<htmlentities>.freeze, ["~> 4.3", ">= 4.3.4"])
-      s.add_runtime_dependency(%q<mimemagic>.freeze, ["~> 0.3"])
-      s.add_development_dependency(%q<yard>.freeze, ["~> 0.9.8"])
-      s.add_development_dependency(%q<kramdown>.freeze, ["~> 2.3"])
-      s.add_development_dependency(%q<timecop>.freeze, ["~> 0.8.1"])
-    else
-      s.add_dependency(%q<nokogiri>.freeze, ["~> 1.10", ">= 1.10.4"])
-      s.add_dependency(%q<rubyzip>.freeze, [">= 1.3.0", "< 3"])
-      s.add_dependency(%q<htmlentities>.freeze, ["~> 4.3", ">= 4.3.4"])
-      s.add_dependency(%q<mimemagic>.freeze, ["~> 0.3"])
-      s.add_dependency(%q<yard>.freeze, ["~> 0.9.8"])
-      s.add_dependency(%q<kramdown>.freeze, ["~> 2.3"])
-      s.add_dependency(%q<timecop>.freeze, ["~> 0.8.1"])
-    end
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<nokogiri>.freeze, ["~> 1.10", ">= 1.10.4"])
+    s.add_runtime_dependency(%q<rubyzip>.freeze, [">= 1.3.0", "< 3"])
+    s.add_runtime_dependency(%q<htmlentities>.freeze, ["~> 4.3", ">= 4.3.4"])
+    s.add_runtime_dependency(%q<mimemagic>.freeze, ["~> 0.3"])
+    s.add_development_dependency(%q<yard>.freeze, ["~> 0.9.8"])
+    s.add_development_dependency(%q<kramdown>.freeze, ["~> 2.3"])
+    s.add_development_dependency(%q<timecop>.freeze, ["~> 0.8.1"])
   else
     s.add_dependency(%q<nokogiri>.freeze, ["~> 1.10", ">= 1.10.4"])
     s.add_dependency(%q<rubyzip>.freeze, [">= 1.3.0", "< 3"])

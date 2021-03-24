@@ -1,12 +1,12 @@
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
-/Users/randytozuka/.rbenv/versions/2.6.6/bin/ruby -I /Users/randytozuka/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210317-29000-seci53.rb extconf.rb
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
+/Users/randytozuka/.rbenv/versions/2.6.6/bin/ruby -I /Users/randytozuka/.rbenv/versions/2.6.6/lib/ruby/site_ruby/2.6.0 -r ./siteconf20210321-2272-5x0p2f.rb extconf.rb
 creating Makefile
 
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
-make "DESTDIR=" clean
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
+make DESTDIR\= clean
 
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
-make "DESTDIR="
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
+make DESTDIR\=
 compiling ./libsass/src/ast.cpp
 compiling ./libsass/src/ast2c.cpp
 compiling ./libsass/src/ast_fwd_decl.cpp
@@ -75,6 +75,6 @@ compiling ./libsass/src/util_string.cpp
 compiling ./libsass/src/values.cpp
 linking shared-object sassc/libsass.bundle
 
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
-make "DESTDIR=" install
-/usr/bin/install -c -m 0755 libsass.bundle ./.gem.20210317-29000-1b9bs0m/sassc
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/sassc-2.4.0/ext
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 libsass.bundle ./.gem.20210321-2272-1pv2dq3/sassc

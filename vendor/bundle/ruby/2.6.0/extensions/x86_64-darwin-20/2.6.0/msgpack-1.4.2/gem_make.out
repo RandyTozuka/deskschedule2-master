@@ -1,11 +1,5 @@
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/msgpack-1.4.2/ext/msgpack
-/Users/randytozuka/.rbenv/versions/2.6.6/bin/ruby -I /Users/randytozuka/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210317-24580-t5rv5.rb extconf.rb
-Ignoring bootsnap-1.7.2 because its extensions are not built. Try: gem pristine bootsnap --version 1.7.2
-Ignoring byebug-11.1.3 because its extensions are not built. Try: gem pristine byebug --version 11.1.3
-Ignoring ffi-1.15.0 because its extensions are not built. Try: gem pristine ffi --version 1.15.0
-Ignoring pg-1.2.3 because its extensions are not built. Try: gem pristine pg --version 1.2.3
-Ignoring puma-4.3.7 because its extensions are not built. Try: gem pristine puma --version 4.3.7
-Ignoring sassc-2.4.0 because its extensions are not built. Try: gem pristine sassc --version 2.4.0
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/msgpack-1.4.2/ext/msgpack
+/Users/randytozuka/.rbenv/versions/2.6.6/bin/ruby -I /Users/randytozuka/.rbenv/versions/2.6.6/lib/ruby/site_ruby/2.6.0 -r ./siteconf20210321-2272-qmaimx.rb extconf.rb
 checking for ruby/st.h... yes
 checking for st.h... yes
 checking for rb_str_replace() in ruby.h... yes
@@ -18,11 +12,11 @@ checking for rb_hash_dup() in ruby.h... yes
 checking for rb_hash_clear() in ruby.h... yes
 creating Makefile
 
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/msgpack-1.4.2/ext/msgpack
-make "DESTDIR=" clean
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/msgpack-1.4.2/ext/msgpack
+make DESTDIR\= clean
 
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/msgpack-1.4.2/ext/msgpack
-make "DESTDIR="
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/msgpack-1.4.2/ext/msgpack
+make DESTDIR\=
 compiling buffer.c
 compiling buffer_class.c
 compiling extension_value_class.c
@@ -44,6 +38,6 @@ static VALUE Unpacker_peek_next_type(VALUE self)
 compiling unpacker_ext_registry.c
 linking shared-object msgpack/msgpack.bundle
 
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/msgpack-1.4.2/ext/msgpack
-make "DESTDIR=" install
-/usr/bin/install -c -m 0755 msgpack.bundle ./.gem.20210317-24580-wft50y/msgpack
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/msgpack-1.4.2/ext/msgpack
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 msgpack.bundle ./.gem.20210321-2272-sm8n51/msgpack

@@ -1,8 +1,27 @@
 <div class="container">
   <h1>adminのページ</h1>
-  <% @ws.each do |f|  %>
-    <p><%= f.wdate  %></p>
-    <p><%= @users.find(f.user_id).email  %></p>
-    <p><%= @statuses.find(f.status_id).status %></p>
-  <% end %>
+  <h1>現在の管理対象者数 <%= @number_of_users-1 %>人</h1>
+  
+  <table class="workschedule_table table table-hover" >
+    <thead>
+      <tr>
+        <th style="width:10%">社員番号</th>
+        <th style="width:25%">email</th>
+        <th style="width:20%">部門名称</th>
+        <th style="width:15%">出勤日</th>
+        <th style="width:30%">勤務形態</th>
+      </tr>
+    </thead>
+    <% @ws.each do |f|  %>
+    <tbody>
+      <tr>
+        <td><%= User.find(f.user_id).idnum  %></td>
+        <td><%= @users.find(f.user_id).email  %></td>
+        <td><%= User.find(f.user_id).dep  %></td>
+        <td><%= f.wdate  %></td>
+        <td><%= @statuses.find(f.status_id).status %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
 </div>

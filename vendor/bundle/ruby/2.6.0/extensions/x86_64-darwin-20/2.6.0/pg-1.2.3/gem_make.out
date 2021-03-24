@@ -1,7 +1,5 @@
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/pg-1.2.3/ext
-/Users/randytozuka/.rbenv/versions/2.6.6/bin/ruby -I /Users/randytozuka/.rbenv/versions/2.6.6/lib/ruby/2.6.0 -r ./siteconf20210317-29000-1wikbxw.rb extconf.rb
-Ignoring puma-4.3.7 because its extensions are not built. Try: gem pristine puma --version 4.3.7
-Ignoring sassc-2.4.0 because its extensions are not built. Try: gem pristine sassc --version 2.4.0
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/pg-1.2.3/ext
+/Users/randytozuka/.rbenv/versions/2.6.6/bin/ruby -I /Users/randytozuka/.rbenv/versions/2.6.6/lib/ruby/site_ruby/2.6.0 -r ./siteconf20210321-2272-fjts7i.rb extconf.rb
 checking for pg_config... yes
 Using config values from /usr/local/bin/pg_config
 checking for libpq-fe.h... yes
@@ -22,11 +20,11 @@ checking for C99 variable length arrays... yes
 creating extconf.h
 creating Makefile
 
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/pg-1.2.3/ext
-make "DESTDIR=" clean
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/pg-1.2.3/ext
+make DESTDIR\= clean
 
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/pg-1.2.3/ext
-make "DESTDIR="
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/pg-1.2.3/ext
+make DESTDIR\=
 compiling gvl_wrappers.c
 compiling pg.c
 compiling pg_binary_decoder.c
@@ -150,6 +148,6 @@ pg_util.c:119:24: warning: implicit conversion loses integer precision: 'long' t
 1 warning generated.
 linking shared-object pg_ext.bundle
 
-current directory: /Users/randytozuka/Desktop/deskschedule2/vendor/bundle/ruby/2.6.0/gems/pg-1.2.3/ext
-make "DESTDIR=" install
-/usr/bin/install -c -m 0755 pg_ext.bundle ./.gem.20210317-29000-1ui6gl0
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/pg-1.2.3/ext
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 pg_ext.bundle ./.gem.20210321-2272-1yfx22a
