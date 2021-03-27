@@ -1,10 +1,48 @@
 class WorkschedulesController < ApplicationController
+
+  def admin_lastmonth
+    if user_signed_in? && current_user.admin?
+      @users = User.all
+      @statuses= Status.all
+      @number_of_users = User.all.count
+      @ws_lastmonth = Workschedule.where(wdate: Date.today.last_month.beginning_of_month .. Date.today.last_month.end_of_month)
+      @bd_lastmonth = Date.today.last_month.beginning_of_month.business_days_until(Date.today.last_month.end_of_month)
+      respond_to do |format|
+        format.html
+        format.xlsx do
+          # ファイル名をここで指定する（動的にファイル名を変更できる）
+          response.headers['Content-Disposition'] = "attachment; filename=#{Date.today}.xlsx"
+        end
+      end
+    end#of if
+  end
+
+  def admin_nextmonth
+    if user_signed_in? && current_user.admin?
+      @users = User.all
+      @statuses= Status.all
+      @number_of_users = User.all.count
+      @ws_nextmonth = Workschedule.where(wdate: Date.today.next_month.beginning_of_month .. Date.today.next_month.end_of_month)
+      @bd_nextmonth = Date.today.next_month.beginning_of_month.business_days_until(Date.today.next_month.end_of_month)
+      respond_to do |format|
+        format.html
+        format.xlsx do
+          # ファイル名をここで指定する（動的にファイル名を変更できる）
+          response.headers['Content-Disposition'] = "attachment; filename=#{Date.today}.xlsx"
+        end
+      end
+    end#of if
+  end
+
   def index
     if user_signed_in? && current_user.admin?
       @number_of_users = User.all.count
       @ws_lastmonth = Workschedule.where(wdate: Date.today.last_month.beginning_of_month .. Date.today.last_month.end_of_month)
       @ws_thismonth = Workschedule.where(wdate: Date.today.beginning_of_month .. Date.today.end_of_month)
       @ws_nextmonth = Workschedule.where(wdate: Date.today.next_month.beginning_of_month .. Date.today.next_month.end_of_month)
+      @bd_lastmonth = Date.today.last_month.beginning_of_month.business_days_until(Date.today.last_month.end_of_month)
+      @bd_thismonth = Date.today.beginning_of_month.business_days_until(Date.today.end_of_month)
+      @bd_nextmonth = Date.today.next_month.beginning_of_month.business_days_until(Date.today.next_month.end_of_month)
       respond_to do |format|
         format.html
         format.xlsx do

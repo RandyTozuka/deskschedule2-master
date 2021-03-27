@@ -1,7 +1,7 @@
 <div class="container">
   <h1>adminのページ</h1>
   <h2>現在の管理対象者数 <%= @number_of_users-1 %>人</h2>
-  <h2>今月の稼働日 <%= @bd_thismonth %>日</h2>
+  <h2>今月の稼働日 <%= @bd_nextmonth %>日</h2>
   <div class="buttons">
       <a class="btn btn-info" href="/workschedules/admin_lastmonth">先月</a>
       <a class="btn btn-info" href="/">今月</a>
@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <!-- この部分↓↓↓を可変させたい -->
-    <% @ws_thismonth.each do |f|  %>
+    <% @ws_nextmonth.each do |f|  %>
     <tbody>
       <tr>
         <td><%= User.find(f.user_id).idnum  %></td>
