@@ -34,6 +34,12 @@ class WorkschedulesController < ApplicationController
     end#of if
   end
 
+  def nondmin_lastmonth
+  end
+
+  def nonadmin_nextmonth
+  end
+
   def index
     if user_signed_in? && current_user.admin?
       @number_of_users = User.all.count
