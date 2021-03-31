@@ -1,12 +1,13 @@
-<div class="container">
-  <% if current_user %>
-    <h1><%= @user.email %>さん</h1>
+<div class="wrapper">
+  <div class="container">
+    <% if current_user %>
+    <h1><%= current_user.email %>さん</h1>
     <%= link_to '予定投入', new_workschedule_path, class: 'schedule-input-btn btn btn-primary' %>
-    <h3><%= @now.month %>月の勤務予定</h3>
+    <h3><%= Date.current.month %>月の勤務予定</h3>
     <div class="buttons">
-        <a class="btn btn-info" href="/workschedules/nonadmin_lastmonth">先月</a>
-        <a class="btn btn-info" href="/">今月</a>
-        <a class="btn btn-info" href="/workschedules/nonadmin_nextmonth">来月</a>
+      <a class="btn btn-info" href="/workschedules/nonadmin_lastmonth">先月</a>
+      <a class="btn btn-info" href="/">今月</a>
+      <a class="btn btn-info" href="/workschedules/nonadmin_nextmonth">来月</a>
     </div>
     <table class="workschedule_table table table-hover" >
       <thead>
@@ -26,6 +27,6 @@
       </tbody>
       <% end %>
     </table>
-    <!--曜日の日本語化 → https://techracho.bpsinc.jp/hachi8833/2016_10_06/25960 -->
-  <% end %>
+    <% end %>
+  </div>
 </div>

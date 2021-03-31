@@ -1,11 +1,35 @@
 class WorkschedulesController < ApplicationController
 
+  def index
+    if user_signed_in? && current_user.admin?#adminユーザーのindex
+      @number_of_users = User.all.count-1 #adminは対象としたくないので１マイナス
+      @ws_thismonth = Workschedule.where(wdate: Date.today.all_month)
+      # bd : business days(稼働日)
+      @bd_thismonth = Date.today.beginning_of_month.business_days_until(Date.today.end_of_month)
+      # dobcc : day off by company circumstances(会社都合休業)
+      @dobcc_count_per_month = Workschedule.where(status_id:3).where(wdate: Date.today.all_month).count
+      @dobcc_ratio_in_total =  (@dobcc_count_per_month / (@bd_thismonth*@number_of_users).to_f).round(3)*100
+      respond_to do |format|
+        format.html
+        format.xlsx do
+          # ファイル名をここで指定する（動的にファイル名を変更できる）
+          response.headers['Content-Disposition'] = "attachment; filename=#{Date.today}.xlsx"
+        end#of do
+      end#of do
+    end#of if
+    if user_signed_in? && current_user #一般ユーザーのindex
+      @week_days = ["日","月","火","水","木","金","土"]
+      @workschedules = Workschedule.where(wdate:Date.today.all_month).where(user_id: current_user.id)
+      @statuses= Status.all
+    end#of if
+  end#of def
+
   def admin_lastmonth
     if user_signed_in? && current_user.admin?
       @users = User.all
       @statuses= Status.all
-      @number_of_users = User.all.count
-      @ws_lastmonth = Workschedule.where(wdate: Date.today.last_month.beginning_of_month .. Date.today.last_month.end_of_month)
+      @number_of_users = User.all.count-1 #adminは対象としたくないので１マイナス
+      @ws_lastmonth = Workschedule.where(wdate: Date.today.all_month) #all_month メソッドで今月としての範囲を取得
       @bd_lastmonth = Date.today.last_month.beginning_of_month.business_days_until(Date.today.last_month.end_of_month)
       respond_to do |format|
         format.html
@@ -21,9 +45,12 @@ class WorkschedulesController < ApplicationController
     if user_signed_in? && current_user.admin?
       @users = User.all
       @statuses= Status.all
-      @number_of_users = User.all.count
+      @number_of_users = User.all.count-1 #adminは対象としたくないので１マイナス
       @ws_nextmonth = Workschedule.where(wdate: Date.today.next_month.beginning_of_month .. Date.today.next_month.end_of_month)
       @bd_nextmonth = Date.today.next_month.beginning_of_month.business_days_until(Date.today.next_month.end_of_month)
+      # day off by company circumstances : 会社都合休業
+      @dobcc_count_per_month = Workschedule.where(status_id:3).where(wdate: Date.today.next_month.beginning_of_month .. Date.today.next_month.end_of_month).count
+      @dobcc_ratio_in_total =  (@dobcc_count_per_month / (@bd_nextmonth*@number_of_users).to_f).round(3)*100
       respond_to do |format|
         format.html
         format.xlsx do
@@ -34,44 +61,27 @@ class WorkschedulesController < ApplicationController
     end#of if
   end
 
-  def nondmin_lastmonth
+  def nonadmin_lastmonth
+    if user_signed_in? && current_user
+      @week_days = ["日","月","火","水","木","金","土"]
+      @workschedules_last_month = Workschedule.where(wdate: Time.current.last_month.all_month).where(user_id: current_user.id)
+      @statuses= Status.all
+    end
   end
 
   def nonadmin_nextmonth
-  end
-
-  def index
-    if user_signed_in? && current_user.admin?
-      @number_of_users = User.all.count
-      @ws_lastmonth = Workschedule.where(wdate: Date.today.last_month.beginning_of_month .. Date.today.last_month.end_of_month)
-      @ws_thismonth = Workschedule.where(wdate: Date.today.beginning_of_month .. Date.today.end_of_month)
-      @ws_nextmonth = Workschedule.where(wdate: Date.today.next_month.beginning_of_month .. Date.today.next_month.end_of_month)
-      @bd_lastmonth = Date.today.last_month.beginning_of_month.business_days_until(Date.today.last_month.end_of_month)
-      @bd_thismonth = Date.today.beginning_of_month.business_days_until(Date.today.end_of_month)
-      @bd_nextmonth = Date.today.next_month.beginning_of_month.business_days_until(Date.today.next_month.end_of_month)
-      respond_to do |format|
-        format.html
-        format.xlsx do
-          # ファイル名をここで指定する（動的にファイル名を変更できる）
-          response.headers['Content-Disposition'] = "attachment; filename=#{Date.today}.xlsx"
-        end
-      end
-    end#of if
     if user_signed_in? && current_user
       @user = current_user
       @users = User.all
       @week_days = ["日","月","火","水","木","金","土"]
       @now = Time.current
       @next_month = Time.current.next_month
-      @previous_month = Time.current.prev_month
-      @workschedules = Workschedule.where(wdate: @now.all_month).where(user_id: current_user.id)
       @workschedules_next_month = Workschedule.where(wdate: @next_month.all_month).where(user_id: current_user.id)
-      @workschedules_previous_month = Workschedule.where(wdate: @previous_month.all_month).where(user_id: current_user.id)
       @statuses= Status.all
-      #all_month    参考: https://qiita.com/whitefox_105/items/7c1d409ebd863fab5cb5
-      #Time.current 参考: https://qiita.com/kodai_0122/items/111457104f83f1fb2259
-    end#of if
-  end#of def
+    end
+  end
+
+
 
   def new
     if current_user
@@ -105,7 +115,6 @@ class WorkschedulesController < ApplicationController
     @user = current_user
     @statuses= Status.all
     @workschedule = Workschedule.find(params[:id])
-    # binding.pry
   end
 
   def update
@@ -123,18 +132,9 @@ class WorkschedulesController < ApplicationController
 
   def destroy
     @workschedule = Workschedule.find(params[:id])
-    # binding.pry
     @workschedule.destroy
     redirect_to root_path
   end
-
-  # def excel
-  #   @ws= ::Workschedule.all
-  #   respond_to do |format|
-  #     format.html
-  #     format.xlsx{response.headers['Content-Disposition'] = 'attachment; filename="workschedule_lists"'+ Time.zone.now.strftime('%Y%m%d%H%M%S') + '.xlsx'}
-  #   end
-  # end#of def
 
   private
       def workschedule_params

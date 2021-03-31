@@ -1,1 +1,32 @@
-<h1>B</h1>
+<div class="wrapper">
+  <div class="container">
+    <% if current_user %>
+    <h1><%= current_user.email %>さん</h1>
+    <%= link_to '予定投入', new_workschedule_path, class: 'schedule-input-btn btn btn-primary' %>
+    <h3><%= Date.current.next_month.month %>月の勤務予定</h3>
+    <div class="buttons">
+      <a class="btn btn-info" href="/workschedules/nonadmin_lastmonth">先月</a>
+      <a class="btn btn-info" href="/">今月</a>
+      <a class="btn btn-info" href="/workschedules/nonadmin_nextmonth">来月</a>
+    </div>
+    <table class="workschedule_table table table-hover" >
+      <thead>
+        <tr>
+          <th style="width:40%">日時</th>
+          <th style="width:30%">勤務携帯</th>
+          <th style="width:30%">削除</th>
+        </tr>
+      </thead>
+      <% @workschedules_next_month.each do |w|  %>
+      <tbody>
+        <tr>
+          <td><%= w.wdate.strftime("%Y年%m月%d日(#{@week_days[w.wdate.wday]})") %></td>
+          <td><%= link_to Status.find(w.status_id).status, edit_workschedule_path(w) %></td>
+          <td><%= link_to "予定削除", workschedule_path(w), method: :delete, data:{confirm:"削除してよろしいですか?"} %></td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+    <% end %>
+  </div>
+</div>
