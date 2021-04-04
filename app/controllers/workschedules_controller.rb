@@ -1,5 +1,7 @@
 class WorkschedulesController < ApplicationController
 
+before_action :set_users_and_user, :set_statuses, :number_of_users
+
   def index
     if user_signed_in? && current_user.admin?#adminユーザーのindex
       @number_of_users = User.all.count-1 #adminは対象としたくないので１マイナス
@@ -20,14 +22,11 @@ class WorkschedulesController < ApplicationController
     if user_signed_in? && current_user #一般ユーザーのindex
       @week_days = ["日","月","火","水","木","金","土"]
       @workschedules = Workschedule.where(wdate:Date.today.all_month).where(user_id: current_user.id)
-      @statuses= Status.all
     end#of if
   end#of def
 
   def admin_lastmonth
     if user_signed_in? && current_user.admin?
-      @users = User.all
-      @statuses= Status.all
       @number_of_users = User.all.count-1 #adminは対象としたくないので１マイナス
       @ws_lastmonth = Workschedule.where(wdate: Date.today.all_month) #all_month メソッドで今月としての範囲を取得
       @bd_lastmonth = Date.today.last_month.beginning_of_month.business_days_until(Date.today.last_month.end_of_month)
@@ -43,8 +42,6 @@ class WorkschedulesController < ApplicationController
 
   def admin_nextmonth
     if user_signed_in? && current_user.admin?
-      @users = User.all
-      @statuses= Status.all
       @number_of_users = User.all.count-1 #adminは対象としたくないので１マイナス
       @ws_nextmonth = Workschedule.where(wdate: Date.today.next_month.beginning_of_month .. Date.today.next_month.end_of_month)
       @bd_nextmonth = Date.today.next_month.beginning_of_month.business_days_until(Date.today.next_month.end_of_month)
@@ -65,37 +62,30 @@ class WorkschedulesController < ApplicationController
     if user_signed_in? && current_user
       @week_days = ["日","月","火","水","木","金","土"]
       @workschedules_last_month = Workschedule.where(wdate: Time.current.last_month.all_month).where(user_id: current_user.id)
-      @statuses= Status.all
     end
   end
 
   def nonadmin_nextmonth
     if user_signed_in? && current_user
-      @user = current_user
-      @users = User.all
+      # @user = current_user
+      # @users = User.all
       @week_days = ["日","月","火","水","木","金","土"]
       @now = Time.current
       @next_month = Time.current.next_month
       @workschedules_next_month = Workschedule.where(wdate: @next_month.all_month).where(user_id: current_user.id)
-      @statuses= Status.all
     end
   end
 
-
-
   def new
     if current_user
-      @user = current_user
       @workschedules = Workschedule.where(user_id: current_user.id)
       @workschedule = Workschedule.new
-      @statuses= Status.all
     else
       redirect_to root_path and return
     end
   end
 
   def create
-    @user = current_user
     @date = workschedule_params[:wdate]
     # すでに予定投入済みの日に新たに予定をいれる事を防止
     if Workschedule.where(user_id: @user.id).where(wdate: @date).any?
@@ -112,13 +102,10 @@ class WorkschedulesController < ApplicationController
   end
 
   def edit
-    @user = current_user
-    @statuses= Status.all
     @workschedule = Workschedule.find(params[:id])
   end
 
   def update
-    @user = current_user
     @date = workschedule_params[:wdate]
     @workschedule = Workschedule.find(params[:id])
     if @workschedule.update(workschedule_params)
@@ -141,5 +128,18 @@ class WorkschedulesController < ApplicationController
         params.require(:workschedule).permit(:wdate, :status_id).merge(user_id: current_user.id)
       end
 
+      def set_users_and_user
+        @users = User.all
+        @user  = current_user
+      end
+
+      def set_statuses
+        @statuses= Status.all
+      end
+
+      def number_of_users
+        @number_of_users = User.all.count-1
+
+      end
 
 end#of class
