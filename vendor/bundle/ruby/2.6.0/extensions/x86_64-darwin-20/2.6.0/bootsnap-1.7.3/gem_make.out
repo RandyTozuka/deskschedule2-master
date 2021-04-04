@@ -1,0 +1,15 @@
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.7.3/ext/bootsnap
+/Users/randytozuka/.rbenv/versions/2.6.6/bin/ruby -I /Users/randytozuka/.rbenv/versions/2.6.6/lib/ruby/site_ruby/2.6.0 -r ./siteconf20210404-29997-q0b6if.rb extconf.rb
+creating Makefile
+
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.7.3/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.7.3/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.7.3/ext/bootsnap
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20210404-29997-mf1wo7/bootsnap

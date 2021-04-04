@@ -1,0 +1,3 @@
+current directory: /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/mimemagic-0.4.3/ext/mimemagic
+/Users/randytozuka/.rbenv/versions/2.6.6/bin/ruby -I/Users/randytozuka/.rbenv/versions/2.6.6/lib/ruby/site_ruby/2.6.0 -rrubygems /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/gems/rake-13.0.3/exe/rake RUBYARCHDIR\=/Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/extensions/x86_64-darwin-20/2.6.0/mimemagic-0.4.3 RUBYLIBDIR\=/Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/extensions/x86_64-darwin-20/2.6.0/mimemagic-0.4.3
+mkdir -p /Users/randytozuka/Desktop/deskschedule2-master/vendor/bundle/ruby/2.6.0/extensions/x86_64-darwin-20/2.6.0/mimemagic-0.4.3/mimemagic

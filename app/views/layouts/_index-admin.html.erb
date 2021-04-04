@@ -1,35 +1,15 @@
+<%= javascript_pack_tag 'ws' %>
 <div class="container">
-  <h1>adminのページ</h1>
-  <h2>現在の管理対象者数 <%= @number_of_users %>人</h2>
-  <h2>今月の稼働日 <%= @bd_thismonth %>日</h2>
-  <h2>今月の会社都合休業割合 <%= @dobcc_ratio_in_total %>％ </h2>
   <%= link_to "Excel出力",workschedules_path(@ws_thismonth, format: :xlsx),class:'btn btn-warning btn-excel' %>
   <div class="buttons">
-      <a class="btn btn-info" href="/workschedules/admin_lastmonth">先月</a>
-      <a class="btn btn-info" href="/">今月</a>
-      <a class="btn btn-info" href="/workschedules/admin_nextmonth">来月</a>
+      <a class="btn btn-info" id="admin_lastmonth_btn" href="">先月</a>
+      <a class="btn btn-info" id="admin_thismonth_btn" href="">今月</a>
+      <a class="btn btn-info" id="admin_nextmonth_btn" href="">来月</a>
   </div>
-  <table class="workschedule_table table table-hover" >
-    <thead>
-      <tr>
-        <th style="width:10%">社員番号</th>
-        <th style="width:25%">email</th>
-        <th style="width:20%">部門名称</th>
-        <th style="width:15%">出勤日</th>
-        <th style="width:30%">勤務形態</th>
-      </tr>
-    </thead>
     <!-- この部分↓↓↓を可変させたい -->
-    <% @ws_thismonth.each do |f|  %>
-    <tbody>
-      <tr>
-        <td><%= User.find(f.user_id).idnum  %></td>
-        <td><%= @users.find(f.user_id).email  %></td>
-        <td><%= User.find(f.user_id).dep  %></td>
-        <td><%= f.wdate  %></td>
-        <td><%= @statuses.find(f.status_id).status %></td>
-      </tr>
-    </tbody>
-    <% end %>
-  </table>
+    <ul class="list">
+      <li class="month admin_lastmonth"><%= render 'layouts/index-admin-lastmonth' %></li>
+      <li class="month admin_thismonth active"><%= render 'layouts/index-admin-thismonth' %></li>
+      <li class="month admin_nextmonth"><%= render 'layouts/index-admin-nextmonth' %></li>
+    </ul>
 </div>

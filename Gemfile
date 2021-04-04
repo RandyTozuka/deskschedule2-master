@@ -40,8 +40,13 @@ end
 gem 'devise'
 #"sass-rails"はデフォルトでインストール済み
 gem "bootstrap-sass", "~>3.3.6"
-gem "jquery-rails"
-gem "jquery-ui-rails"
+
+# Rails5以前の導入方法ではjquery-railsというGemをインストールするのが基本線だったが、
+# Webpackerで管理する際はyarnコマンドを使用してインストール。この手法を使うため
+# 下記2つのgemはuninstallした。
+# gem "jquery-rails"
+# gem "jquery-ui-rails"
+
 # pry
 gem 'pry-rails'
 # kaminari(pagenation)

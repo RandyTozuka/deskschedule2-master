@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 .wrapper{
   width: 80%;
   margin-left: 10px;
@@ -33,4 +34,16 @@ input[type="date"] {
   margin: 10px 30px;
   padding: 10px 20px;
   font-weight: bold;
+}
+
+.list{
+  list-style: none;
+}
+
+.month{
+  display: none;
+}
+
+.active{
+  display: block;
 }
