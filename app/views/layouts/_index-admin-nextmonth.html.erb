@@ -1,7 +1,7 @@
 <h1>adminのページ</h1>
 <h2>現在の管理対象者数 <%= @number_of_users %>人</h2>
 <h2><%= Time.current.next_month.month %>月の稼働日数 <%= @bd_nextmonth %>日</h2>
-<h2>今月の会社都合休業割合 <%= @dobcc_ratio_in_total %>％ </h2>
+<h2><%= Time.current.next_month.month %>月の会社都合休業割合 <%= @dobcc_ratio_in_total_next_month %>％ </h2>
 <table class="workschedule_table table table-hover" >
   <thead>
     <tr>
@@ -12,8 +12,8 @@
       <th style="width:30%">勤務形態</th>
     </tr>
   </thead>
-  <% @ws_nextmonth.each do |f|  %>
   <tbody>
+  <% @ws_nextmonth.each do |f|  %>
     <tr>
       <td><%= User.find(f.user_id).idnum  %></td>
       <td><%= @users.find(f.user_id).email  %></td>
@@ -21,6 +21,6 @@
       <td><%= f.wdate  %></td>
       <td><%= @statuses.find(f.status_id).status %></td>
     </tr>
-  </tbody>
   <% end %>
+  </tbody>
 </table>

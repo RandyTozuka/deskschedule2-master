@@ -13,8 +13,12 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
       @bd_thismonth = Date.today.beginning_of_month.business_days_until(Date.today.end_of_month)
       @bd_lastmonth = Date.today.last_month.beginning_of_month.business_days_until(Date.today.last_month.end_of_month)
       @bd_nextmonth = Date.today.next_month.beginning_of_month.business_days_until(Date.today.next_month.end_of_month)
-      @dobcc_count_per_month = Workschedule.where(status_id:3).where(wdate: Date.today.all_month).count
-      @dobcc_ratio_in_total =  (@dobcc_count_per_month / (@bd_thismonth*@number_of_users).to_f).round(3)*100
+      @dobcc_count_per_this_month = Workschedule.where(status_id:3).where(wdate: Date.today.all_month).count
+      @dobcc_count_per_last_month = Workschedule.where(status_id:3).where(wdate: Date.today.last_month.all_month).count
+      @dobcc_count_per_next_month = Workschedule.where(status_id:3).where(wdate: Date.today.next_month.all_month).count
+      @dobcc_ratio_in_total_this_month =  (@dobcc_count_per_this_month / (@bd_thismonth*@number_of_users).to_f).round(3)*100
+      @dobcc_ratio_in_total_last_month =  (@dobcc_count_per_last_month / (@bd_lastmonth*@number_of_users).to_f).round(3)*100
+      @dobcc_ratio_in_total_next_month =  (@dobcc_count_per_next_month / (@bd_nextmonth*@number_of_users).to_f).round(3)*100
       respond_to do |format|
         format.html
         format.xlsx do
@@ -69,8 +73,6 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
 
   def nonadmin_nextmonth
     if user_signed_in? && current_user
-      # @user = current_user
-      # @users = User.all
       @week_days = ["日","月","火","水","木","金","土"]
       @now = Time.current
       @next_month = Time.current.next_month
