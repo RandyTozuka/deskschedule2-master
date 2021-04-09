@@ -9,7 +9,8 @@ gem 'puma', '~> 4.1'
 # gem 'sass-rails', '>= 6'
 gem 'sassc'
 gem 'webpacker', '~> 4.0'
-gem 'turbolinks', '~> 5'
+# jQueryとの喧嘩を避けるためturbolinksを無効化する application.js も参照
+# gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
