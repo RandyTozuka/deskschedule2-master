@@ -2,9 +2,9 @@
 <div class="container">
   <%= link_to "Excel出力",workschedules_path(@ws_thismonth, format: :xlsx),class:'btn btn-warning btn-excel' %>
   <div class="buttons">
-      <a class="btn btn-info" id="admin_lastmonth_btn" href="">先月</a>
-      <a class="btn btn-info admin_thismonth_btn" id="admin_thismonth_btn" href="">今月</a>
-      <a class="btn btn-info" id="admin_nextmonth_btn" href="">来月</a>
+    <button type="button" name="button" class="btn btn-info" id="admin_lastmonth_btn" >先月</button>
+    <button type="button" name="button" class="btn btn-info" id="admin_thismonth_btn" >今月</button>
+    <button type="button" name="button" class="btn btn-info" id="admin_nextmonth_btn" >来月</button>
   </div>
     <!-- この部分↓↓↓を可変させたい -->
     <ul class="list">

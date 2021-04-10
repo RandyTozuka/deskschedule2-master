@@ -23,8 +23,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * references
-  [曜日の日本語化](https://techracho.bpsinc.jp/hachi8833/2016_10_06/25960)
-  [all_monthの使い方](https://qiita.com/whitefox_105/items/7c1d409ebd863fab5cb5)
-  [Time.currentについて](https://qiita.com/kodai_0122/items/111457104f83f1fb2259)
-  [before_actionでcontrollerを整理](https://pikawaka.com/rails/before_action)
-  [Rails6でのjQuery導入方法](https://qiita.com/tatsuhiko-nakayama/items/b2f0c77e794ca8c9bd74)
+  [曜日の日本語化](https://techracho.bpsinc.jp/hachi8833/2016_10_06/25960)  [all_monthの使い方](https://qiita.com/whitefox_105/items/7c1d409ebd863fab5cb5)  [Time.currentについて](https://qiita.com/kodai_0122/items/111457104f83f1fb2259)  [before_actionでcontrollerを整理](https://pikawaka.com/rails/before_action)  [Rails6でのjQuery導入方法](https://qiita.com/tatsuhiko-nakayama/items/b2f0c77e794ca8c9bd74)
