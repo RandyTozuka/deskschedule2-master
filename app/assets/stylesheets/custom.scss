@@ -14,13 +14,6 @@ input[type="date"] {
         height: 30px;
     }
 
-.schedule-input-btn{
-  width: 200px;
-  height: 50px;
-  // padding: 15px;
-  font-size: 25px;
-}
-
 .paging{
   display: flex;
   margin-bottom: 30px
@@ -36,11 +29,21 @@ input[type="date"] {
   font-weight: bold;
 }
 
+.schedule-input-btn{
+  margin: 10px 30px;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
 .list{
   list-style: none;
 }
 
 .month{
+  display: none;
+}
+
+.namonth{
   display: none;
 }
 

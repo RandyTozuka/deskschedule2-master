@@ -16,9 +16,9 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
       @dobcc_count_per_this_month = Workschedule.where(status_id:3).where(wdate: Date.today.all_month).count
       @dobcc_count_per_last_month = Workschedule.where(status_id:3).where(wdate: Date.today.last_month.all_month).count
       @dobcc_count_per_next_month = Workschedule.where(status_id:3).where(wdate: Date.today.next_month.all_month).count
-      @dobcc_ratio_in_total_this_month =  (@dobcc_count_per_this_month / (@bd_thismonth*@number_of_users).to_f).round(3)*100
-      @dobcc_ratio_in_total_last_month =  (@dobcc_count_per_last_month / (@bd_lastmonth*@number_of_users).to_f).round(3)*100
-      @dobcc_ratio_in_total_next_month =  (@dobcc_count_per_next_month / (@bd_nextmonth*@number_of_users).to_f).round(3)*100
+      @dobcc_ratio_in_total_this_month =  (@dobcc_count_per_this_month / (@bd_thismonth*@number_of_users).to_f).round(2)*100
+      @dobcc_ratio_in_total_last_month =  (@dobcc_count_per_last_month / (@bd_lastmonth*@number_of_users).to_f).round(2)*100
+      @dobcc_ratio_in_total_next_month =  (@dobcc_count_per_next_month / (@bd_nextmonth*@number_of_users).to_f).round(2)*100
       respond_to do |format|
         format.html
         format.xlsx do
@@ -29,40 +29,11 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
     end#of if
     if user_signed_in? && current_user #一般ユーザーのindex
       @week_days = ["日","月","火","水","木","金","土"]
-      @workschedules = Workschedule.where(wdate:Date.today.all_month).where(user_id: current_user.id)
+      @ws_thismonth_na = Workschedule.where(wdate:Date.today.all_month).where(user_id: current_user.id)
+      @ws_lastmonth_na = Workschedule.where(wdate:Date.today.last_month.all_month).where(user_id: current_user.id)
+      @ws_nextmonth_na = Workschedule.where(wdate:Date.today.next_month.all_month).where(user_id: current_user.id)
     end#of if
   end#of def
-
-  def admin_lastmonth
-    if user_signed_in? && current_user.admin?
-      @ws_lastmonth = Workschedule.where(wdate: Date.today.all_month) #all_month メソッドで今月としての範囲を取得
-      @bd_lastmonth = Date.today.last_month.beginning_of_month.business_days_until(Date.today.last_month.end_of_month)
-      respond_to do |format|
-        format.html
-        format.xlsx do
-          # ファイル名をここで指定する（動的にファイル名を変更できる）
-          response.headers['Content-Disposition'] = "attachment; filename=#{Date.today}.xlsx"
-        end
-      end
-    end#of if
-  end
-
-  def admin_nextmonth
-    if user_signed_in? && current_user.admin?
-      @ws_nextmonth = Workschedule.where(wdate: Date.today.next_month.beginning_of_month .. Date.today.next_month.end_of_month)
-      @bd_nextmonth = Date.today.next_month.beginning_of_month.business_days_until(Date.today.next_month.end_of_month)
-      # day off by company circumstances : 会社都合休業
-      @dobcc_count_per_month = Workschedule.where(status_id:3).where(wdate: Date.today.next_month.beginning_of_month .. Date.today.next_month.end_of_month).count
-      @dobcc_ratio_in_total =  (@dobcc_count_per_month / (@bd_nextmonth*@number_of_users).to_f).round(3)*100
-      respond_to do |format|
-        format.html
-        format.xlsx do
-          # ファイル名をここで指定する（動的にファイル名を変更できる）
-          response.headers['Content-Disposition'] = "attachment; filename=#{Date.today}.xlsx"
-        end
-      end
-    end#of if
-  end
 
   def nonadmin_lastmonth
     if user_signed_in? && current_user
@@ -143,7 +114,6 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
 
       def number_of_users
         @number_of_users = User.all.count-1
-
       end
 
 end#of class
