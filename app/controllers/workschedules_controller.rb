@@ -117,3 +117,14 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
       end
 
 end#of class
+
+# memo
+# wb = xlsx_package.workbook
+# wb.add_worksheet(name: "output") do |sheet|
+#   sheet.add_row ["No.", "日付", "ステータス" ]
+#     @ws_thismonth.each_with_index do |ws, i|
+#       sheet.add_row [i,
+#                      ws.wdate.strftime("%Y年%m月%d日(#{@week_days[ws.wdate.wday]})"),
+#                      ws.status_id ]
+#   end
+# end

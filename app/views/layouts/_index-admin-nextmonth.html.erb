@@ -2,7 +2,7 @@
 <h2>現在の管理対象者数 <%= @number_of_users %>人</h2>
 <h2><%= Time.current.next_month.month %>月の稼働日数 <%= @bd_nextmonth %>日</h2>
 <h2><%= Time.current.next_month.month %>月の会社都合休業割合 <%= @dobcc_ratio_in_total_next_month %>％ </h2>
-<%= link_to "Excel出力",workschedules_path(format: :xlsx),class:'btn btn-warning btn-excel' %>
+<%= link_to "Excel出力",workschedules_path(format: :xlsx, type: 3),class:'btn btn-warning btn-excel' %>
 <table class="workschedule_table table table-hover" >
   <thead>
     <tr>
