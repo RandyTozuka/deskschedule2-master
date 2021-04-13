@@ -1,28 +1,25 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "output") do |sheet|
   sheet.add_row ["No.", "日付", "ステータス" ]
-
-  a = params[:type]
-    case a
-      when a==="1"
-        @ws_lastmonth.each_with_index do |ws, i|
-          sheet.add_row [i,
-                         ws.wdate.strftime("%Y年%m月%d日(#{@week_days[ws.wdate.wday]})"),
-                         ws.status_id ]
-        end
-
-      when a==="2"
-        @ws_thismonth.each_with_index do |ws, i|
-          sheet.add_row [i,
-                         ws.wdate.strftime("%Y年%m月%d日(#{@week_days[ws.wdate.wday]})"),
-                         ws.status_id ]
-        end
-
-      when a==="3"
-        @ws_nextmonth.each_with_index do |ws, i|
-          sheet.add_row [i,
-                         ws.wdate.strftime("%Y年%m月%d日(#{@week_days[ws.wdate.wday]})"),
-                         ws.status_id ]
-        end
+    if params[:type]==="1"
+    @ws_lastmonth.each_with_index do |ws, i|
+      sheet.add_row [i,
+                     ws.wdate.strftime("%Y年%m月%d日(#{@week_days[ws.wdate.wday]})"),
+                     ws.status_id ]
+      end
+    end
+    if params[:type]==="2"
+    @ws_thismonth.each_with_index do |ws, i|
+      sheet.add_row [i,
+                     ws.wdate.strftime("%Y年%m月%d日(#{@week_days[ws.wdate.wday]})"),
+                     ws.status_id ]
+      end
+    end
+    if params[:type]==="3"
+    @ws_nextmonth.each_with_index do |ws, i|
+      sheet.add_row [i,
+                     ws.wdate.strftime("%Y年%m月%d日(#{@week_days[ws.wdate.wday]})"),
+                     ws.status_id ]
+      end
     end
 end
