@@ -58,6 +58,9 @@ gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails'
 # business_time 参考:https://qiita.com/hituziando/items/2bf6dbb29280efb4ad1c
 gem 'business_time'
+
+gem 'hirb'          # 出力結果を表として出力するgem
+gem 'hirb-unicode'  # マルチバイト文字の表示を補正するgem
 #------------------------------------------------------------------
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
