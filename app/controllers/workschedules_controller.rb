@@ -19,7 +19,9 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
       @dobcc_ratio_in_total_this_month =  (@dobcc_count_per_this_month / (@bd_thismonth*@number_of_users).to_f).round(2)*100
       @dobcc_ratio_in_total_last_month =  (@dobcc_count_per_last_month / (@bd_lastmonth*@number_of_users).to_f).round(2)*100
       @dobcc_ratio_in_total_next_month =  (@dobcc_count_per_next_month / (@bd_nextmonth*@number_of_users).to_f).round(2)*100
-      @dobcc_count_per_this_month_per_dep = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"営業3部"}).size
+      @dobcc_count_per_this_month_per_eigyou_1 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"営業1部"}).size
+      
+      @dobcc_ratio_in_total_this_month_per_eigyou_1 =  (@dobcc_count_per_this_month_per_eigyou_1 / (@bd_thismonth*@users.where(dep:"営業1部").count).to_f).round(2)*100
       respond_to do |format|
         format.html
         format.xlsx do
