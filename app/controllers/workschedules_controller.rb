@@ -7,24 +7,23 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
     # dobcc : day off by company circumstances(会社都合休業)
     # ws : work schedule
     if user_signed_in? && current_user.admin?#adminユーザーのindex
-      # @ws_thismonth = Workschedule.where(wdate: Date.today.all_month)#all_month メソッドで今月としての範囲を取得
       @ws_thismonth = Workschedule.ws_thismonth
-      @ws_lastmonth = Workschedule.where(wdate: Date.today.last_month.all_month)
-      @ws_nextmonth = Workschedule.where(wdate: Date.today.next_month.all_month)
+      @ws_lastmonth = Workschedule.ws_lastmonth
+      @ws_nextmonth = Workschedule.ws_nextmonth
       @bd_thismonth = Date.today.beginning_of_month.business_days_until(Date.today.end_of_month)
       @bd_lastmonth = Date.today.last_month.beginning_of_month.business_days_until(Date.today.last_month.end_of_month)
       @bd_nextmonth = Date.today.next_month.beginning_of_month.business_days_until(Date.today.next_month.end_of_month)
-      @dobcc_count_per_this_month = Workschedule.where(status_id:3).where(wdate: Date.today.all_month).count
-      @dobcc_count_per_last_month = Workschedule.where(status_id:3).where(wdate: Date.today.last_month.all_month).count
-      @dobcc_count_per_next_month = Workschedule.where(status_id:3).where(wdate: Date.today.next_month.all_month).count
+      @dobcc_count_per_this_month = Workschedule.dobcc.where(wdate: Date.today.all_month).count
+      @dobcc_count_per_last_month = Workschedule.dobcc.where(wdate: Date.today.last_month.all_month).count
+      @dobcc_count_per_next_month = Workschedule.dobcc.where(wdate: Date.today.next_month.all_month).count
       @dobcc_ratio_in_total_this_month =  (@dobcc_count_per_this_month / (@bd_thismonth*@number_of_users).to_f).round(2)*100
       @dobcc_ratio_in_total_last_month =  (@dobcc_count_per_last_month / (@bd_lastmonth*@number_of_users).to_f).round(2)*100
       @dobcc_ratio_in_total_next_month =  (@dobcc_count_per_next_month / (@bd_nextmonth*@number_of_users).to_f).round(2)*100
-      @dobcc_ratio_in_this_month_per_dep = User.joins(:workschedules)
+      @dobcc_ratio_in_this_month_per_dep = Workschedule.joins(:user)
                                           .where(workschedules:{status_id:3 })
-                                          .where(workschedules:{wdate:Date.today.all_month})
+                                          .ws_thismonth
                                           .where(users:{dep:"営業3部"})
-                                          .count
+                                          .size
       respond_to do |format|
         format.html
         format.xlsx do
