@@ -8,6 +8,15 @@
   margin-top: 10px;
 }
 
+.admin-top {
+  display: flex;
+  background-color: mediumblue;
+  color: white;
+}
+
+.item{
+  margin:0px 15px;
+}
 
 input[type="date"] {
         width: 200px;
@@ -24,12 +33,23 @@ input[type="date"] {
 }
 
 .btn-excel{
+  color: mediumblue;
   margin: 10px 30px;
   padding: 10px 20px;
+  font-weight: bold;
+  border-color: mediumblue;
+}
+
+.btn-admin-top{
+  background-color: mediumblue;
+  color: white;
+  margin: 10px 10px;
+  padding: 10px 30px;
   font-weight: bold;
 }
 
 .schedule-input-btn{
+  background-color: mediumblue;
   margin: 10px 30px;
   padding: 10px 20px;
   font-weight: bold;

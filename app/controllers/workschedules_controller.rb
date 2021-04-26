@@ -19,8 +19,45 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
       @dobcc_ratio_in_total_this_month =  (@dobcc_count_per_this_month / (@bd_thismonth*@number_of_users).to_f).round(2)*100
       @dobcc_ratio_in_total_last_month =  (@dobcc_count_per_last_month / (@bd_lastmonth*@number_of_users).to_f).round(2)*100
       @dobcc_ratio_in_total_next_month =  (@dobcc_count_per_next_month / (@bd_nextmonth*@number_of_users).to_f).round(2)*100
+      # ↓↓↓今月のdobcc
       @dobcc_count_per_this_month_per_eigyou_1 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"営業1部"}).size
+      @dobcc_count_per_this_month_per_eigyou_2 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"営業2部"}).size
+      @dobcc_count_per_this_month_per_eigyou_3 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"営業3部"}).size
+      @dobcc_count_per_this_month_per_eigyou_4 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"営業4部"}).size
+      @dobcc_count_per_this_month_per_eigyou_5 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"営業5部"}).size
+      @dobcc_count_per_this_month_per_zaimu    = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"財務部"}).size
       @dobcc_ratio_in_total_this_month_per_eigyou_1 =  (@dobcc_count_per_this_month_per_eigyou_1 / (@bd_thismonth*@users.where(dep:"営業1部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_this_month_per_eigyou_2 =  (@dobcc_count_per_this_month_per_eigyou_2 / (@bd_thismonth*@users.where(dep:"営業2部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_this_month_per_eigyou_3 =  (@dobcc_count_per_this_month_per_eigyou_3 / (@bd_thismonth*@users.where(dep:"営業3部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_this_month_per_eigyou_4 =  (@dobcc_count_per_this_month_per_eigyou_4 / (@bd_thismonth*@users.where(dep:"営業4部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_this_month_per_eigyou_5 =  (@dobcc_count_per_this_month_per_eigyou_5 / (@bd_thismonth*@users.where(dep:"営業5部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_this_month_per_zaimu    =  (@dobcc_count_per_this_month_per_zaimu    / (@bd_thismonth*@users.where(dep:"財務部") .count).to_f).round(2)*100
+      # ↓↓↓先月のdobcc
+      @dobcc_count_per_last_month_per_eigyou_1 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep:"営業1部"}).size
+      @dobcc_count_per_last_month_per_eigyou_2 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep:"営業2部"}).size
+      @dobcc_count_per_last_month_per_eigyou_3 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep:"営業3部"}).size
+      @dobcc_count_per_last_month_per_eigyou_4 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep:"営業4部"}).size
+      @dobcc_count_per_last_month_per_eigyou_5 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep:"営業5部"}).size
+      @dobcc_count_per_last_month_per_zaimu    = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep:"財務部"}).size
+      @dobcc_ratio_in_total_last_month_per_eigyou_1 =  (@dobcc_count_per_last_month_per_eigyou_1 / (@bd_lastmonth*@users.where(dep:"営業1部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_last_month_per_eigyou_2 =  (@dobcc_count_per_last_month_per_eigyou_2 / (@bd_lastmonth*@users.where(dep:"営業2部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_last_month_per_eigyou_3 =  (@dobcc_count_per_last_month_per_eigyou_3 / (@bd_lastmonth*@users.where(dep:"営業3部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_last_month_per_eigyou_4 =  (@dobcc_count_per_last_month_per_eigyou_4 / (@bd_lastmonth*@users.where(dep:"営業4部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_last_month_per_eigyou_5 =  (@dobcc_count_per_last_month_per_eigyou_5 / (@bd_lastmonth*@users.where(dep:"営業5部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_last_month_per_zaimu    =  (@dobcc_count_per_last_month_per_zaimu    / (@bd_lastmonth*@users.where(dep:"財務部") .count).to_f).round(2)*100
+      # ↓↓↓来月のdobcc
+      @dobcc_count_per_next_month_per_eigyou_1 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep:"営業1部"}).size
+      @dobcc_count_per_next_month_per_eigyou_2 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep:"営業2部"}).size
+      @dobcc_count_per_next_month_per_eigyou_3 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep:"営業3部"}).size
+      @dobcc_count_per_next_month_per_eigyou_4 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep:"営業4部"}).size
+      @dobcc_count_per_next_month_per_eigyou_5 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep:"営業5部"}).size
+      @dobcc_count_per_next_month_per_zaimu    = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep:"財務部"}).size
+      @dobcc_ratio_in_total_next_month_per_eigyou_1 =  (@dobcc_count_per_next_month_per_eigyou_1 / (@bd_nextmonth*@users.where(dep:"営業1部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_next_month_per_eigyou_2 =  (@dobcc_count_per_next_month_per_eigyou_2 / (@bd_nextmonth*@users.where(dep:"営業2部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_next_month_per_eigyou_3 =  (@dobcc_count_per_next_month_per_eigyou_3 / (@bd_nextmonth*@users.where(dep:"営業3部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_next_month_per_eigyou_4 =  (@dobcc_count_per_next_month_per_eigyou_4 / (@bd_nextmonth*@users.where(dep:"営業4部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_next_month_per_eigyou_5 =  (@dobcc_count_per_next_month_per_eigyou_5 / (@bd_nextmonth*@users.where(dep:"営業5部").count).to_f).round(2)*100
+      @dobcc_ratio_in_total_next_month_per_zaimu    =  (@dobcc_count_per_next_month_per_zaimu    / (@bd_nextmonth*@users.where(dep:"財務部") .count).to_f).round(2)*100
       respond_to do |format|
         format.html
         format.xlsx do
@@ -119,14 +156,3 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
       end
 
 end#of class
-
-# memo
-# wb = xlsx_package.workbook
-# wb.add_worksheet(name: "output") do |sheet|
-#   sheet.add_row ["No.", "日付", "ステータス" ]
-#     @ws_thismonth.each_with_index do |ws, i|
-#       sheet.add_row [i,
-#                      ws.wdate.strftime("%Y年%m月%d日(#{@week_days[ws.wdate.wday]})"),
-#                      ws.status_id ]
-#   end
-# end

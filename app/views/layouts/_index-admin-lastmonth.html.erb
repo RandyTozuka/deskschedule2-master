@@ -1,8 +1,35 @@
 <h1>adminのページ</h1>
-<h2>現在の管理対象者数 <%= @number_of_users %>人</h2>
-<h2><%= Time.current.last_month.month %>月の稼働日数 <%= @bd_lastmonth %>日</h2>
-<h2><%= Time.current.last_month.month %>月の会社都合休業割合 <%= @dobcc_ratio_in_total_last_month %>％ </h2>
-<%= link_to "Excel出力",workschedules_path(format: :xlsx, type: 1 ),class:'btn btn-warning btn-excel' %>
+<h3><%= Time.current.last_month.month %>月の部門別会社都合休業割合</h3>
+<table class="table">
+  <thead class="thead-dark" >
+    <tr>
+      <th scope="coll" style="width:10%" >営業1部</th>
+      <th scope="coll" style="width:10%" >営業2部</th>
+      <th scope="coll" style="width:10%" >営業3部</th>
+      <th scope="coll" style="width:10%" >営業4部</th>
+      <th scope="coll" style="width:10%" >営業5部</th>
+      <th scope="coll" style="width:10%" >財務部</th>
+      <th scope="coll" style="width:10%" >全体</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row" ><%= @dobcc_ratio_in_total_last_month_per_eigyou_1 %> %</td>
+      <td scope="row" ><%= @dobcc_ratio_in_total_last_month_per_eigyou_2 %> %</td>
+      <td scope="row" ><%= @dobcc_ratio_in_total_last_month_per_eigyou_3 %> %</td>
+      <td scope="row" ><%= @dobcc_ratio_in_total_last_month_per_eigyou_4 %> %</td>
+      <td scope="row" ><%= @dobcc_ratio_in_total_last_month_per_eigyou_5 %> %</td>
+      <td scope="row" ><%= @dobcc_ratio_in_total_last_month_per_zaimu %> %</td>
+      <td scope="row" ><%= @dobcc_ratio_in_total_last_month %> %</td>
+    </tr>
+  </tbody>
+</table>
+<div class="admin-top">
+  <div class="item">現在の管理対象者数 <%= @number_of_users %>人 </div>
+  <div class="item">|</div>
+  <div class="item"><%= Time.current.last_month.month %>月の稼働日数 <%= @bd_lastmonth %>日</div>
+</div>
+<%= link_to "Excel出力",workschedules_path(format: :xlsx, type: 1 ),class:'btn btn-excel' %>
 <table class="workschedule_table table table-hover" >
   <thead>
     <tr>
