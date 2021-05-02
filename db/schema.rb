@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_221411) do
+ActiveRecord::Schema.define(version: 2021_04_30_214048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dep_names", force: :cascade do |t|
+    t.string "dep"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "statuses", force: :cascade do |t|
     t.string "status"
@@ -33,6 +39,8 @@ ActiveRecord::Schema.define(version: 2021_04_26_221411) do
     t.integer "idnum"
     t.string "dep"
     t.string "name"
+    t.bigint "dep_name_id"
+    t.index ["dep_name_id"], name: "index_users_on_dep_name_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -47,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_04_26_221411) do
     t.index ["user_id"], name: "index_workschedules_on_user_id"
   end
 
+  add_foreign_key "users", "dep_names"
   add_foreign_key "workschedules", "statuses"
   add_foreign_key "workschedules", "users"
 end

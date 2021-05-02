@@ -1,0 +1,2 @@
+class DepName < ApplicationRecord
+end
