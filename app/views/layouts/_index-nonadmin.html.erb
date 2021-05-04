@@ -2,7 +2,7 @@
 <div class="wrapper">
   <div class="container">
     <% if current_user %>
-    <h1><%= current_user.email %>さん</h1>
+    <h1><%= current_user.name %>さん ( <%= DepName.find_by(id: current_user.dep_name_id).dep %> )</h1>
     <%= link_to '予定投入', new_workschedule_path, class: 'schedule-input-btn btn btn-primary' %>
       <div class="buttons">
         <button type="button" name="button" class="btn btn-info" id="nonadmin_lastmonth_btn" >先月</button>

@@ -1,4 +1,4 @@
-class WorkschedulesController < ApplicationController
+depclass WorkschedulesController < ApplicationController
 
 before_action :set_users_and_user, :set_statuses, :number_of_users
 
@@ -20,44 +20,44 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
       @dobcc_ratio_in_total_last_month =  (@dobcc_count_per_last_month / (@bd_lastmonth*@number_of_users).to_f).round(2)*100
       @dobcc_ratio_in_total_next_month =  (@dobcc_count_per_next_month / (@bd_nextmonth*@number_of_users).to_f).round(2)*100
       # ↓↓↓今月のdobcc
-      @dobcc_count_per_this_month_per_eigyou_1 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"営業1部"}).size
-      @dobcc_count_per_this_month_per_eigyou_2 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"営業2部"}).size
-      @dobcc_count_per_this_month_per_eigyou_3 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"営業3部"}).size
-      @dobcc_count_per_this_month_per_eigyou_4 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"営業4部"}).size
-      @dobcc_count_per_this_month_per_eigyou_5 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"営業5部"}).size
-      @dobcc_count_per_this_month_per_zaimu    = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep:"財務部"}).size
-      @dobcc_ratio_in_total_this_month_per_eigyou_1 =  (@dobcc_count_per_this_month_per_eigyou_1 / (@bd_thismonth*@users.where(dep:"営業1部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_this_month_per_eigyou_2 =  (@dobcc_count_per_this_month_per_eigyou_2 / (@bd_thismonth*@users.where(dep:"営業2部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_this_month_per_eigyou_3 =  (@dobcc_count_per_this_month_per_eigyou_3 / (@bd_thismonth*@users.where(dep:"営業3部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_this_month_per_eigyou_4 =  (@dobcc_count_per_this_month_per_eigyou_4 / (@bd_thismonth*@users.where(dep:"営業4部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_this_month_per_eigyou_5 =  (@dobcc_count_per_this_month_per_eigyou_5 / (@bd_thismonth*@users.where(dep:"営業5部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_this_month_per_zaimu    =  (@dobcc_count_per_this_month_per_zaimu    / (@bd_thismonth*@users.where(dep:"財務部") .count).to_f).round(2)*100
+      @dobcc_count_per_this_month_per_dep_1 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:1}).size
+      @dobcc_count_per_this_month_per_dep_2 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:2}).size
+      @dobcc_count_per_this_month_per_dep_3 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:3}).size
+      @dobcc_count_per_this_month_per_dep_4 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:4}).size
+      @dobcc_count_per_this_month_per_dep_5 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:5}).size
+      @dobcc_count_per_this_month_per_dep_6 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:6}).size
+      @dobcc_ratio_in_total_this_month_per_dep_1 =  (@dobcc_count_per_this_month_per_dep_1 / (@bd_thismonth*@users.where(dep_name_id:1).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_this_month_per_dep_2 =  (@dobcc_count_per_this_month_per_dep_2 / (@bd_thismonth*@users.where(dep_name_id:2).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_this_month_per_dep_3 =  (@dobcc_count_per_this_month_per_dep_3 / (@bd_thismonth*@users.where(dep_name_id:3).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_this_month_per_dep_4 =  (@dobcc_count_per_this_month_per_dep_4 / (@bd_thismonth*@users.where(dep_name_id:4).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_this_month_per_dep_5 =  (@dobcc_count_per_this_month_per_dep_5 / (@bd_thismonth*@users.where(dep_name_id:5).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_this_month_per_dep_6 =  (@dobcc_count_per_this_month_per_dep_6 / (@bd_thismonth*@users.where(dep_name_id:6).count).to_f).round(2)*100
       # ↓↓↓先月のdobcc
-      @dobcc_count_per_last_month_per_eigyou_1 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep:"営業1部"}).size
-      @dobcc_count_per_last_month_per_eigyou_2 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep:"営業2部"}).size
-      @dobcc_count_per_last_month_per_eigyou_3 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep:"営業3部"}).size
-      @dobcc_count_per_last_month_per_eigyou_4 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep:"営業4部"}).size
-      @dobcc_count_per_last_month_per_eigyou_5 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep:"営業5部"}).size
-      @dobcc_count_per_last_month_per_zaimu    = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep:"財務部"}).size
-      @dobcc_ratio_in_total_last_month_per_eigyou_1 =  (@dobcc_count_per_last_month_per_eigyou_1 / (@bd_lastmonth*@users.where(dep:"営業1部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_last_month_per_eigyou_2 =  (@dobcc_count_per_last_month_per_eigyou_2 / (@bd_lastmonth*@users.where(dep:"営業2部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_last_month_per_eigyou_3 =  (@dobcc_count_per_last_month_per_eigyou_3 / (@bd_lastmonth*@users.where(dep:"営業3部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_last_month_per_eigyou_4 =  (@dobcc_count_per_last_month_per_eigyou_4 / (@bd_lastmonth*@users.where(dep:"営業4部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_last_month_per_eigyou_5 =  (@dobcc_count_per_last_month_per_eigyou_5 / (@bd_lastmonth*@users.where(dep:"営業5部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_last_month_per_zaimu    =  (@dobcc_count_per_last_month_per_zaimu    / (@bd_lastmonth*@users.where(dep:"財務部") .count).to_f).round(2)*100
+      @dobcc_count_per_last_month_per_dep_1 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep_name_id:1}).size
+      @dobcc_count_per_last_month_per_dep_2 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep_name_id:2}).size
+      @dobcc_count_per_last_month_per_dep_3 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep_name_id:3}).size
+      @dobcc_count_per_last_month_per_dep_4 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep_name_id:4}).size
+      @dobcc_count_per_last_month_per_dep_5 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep_name_id:5}).size
+      @dobcc_count_per_last_month_per_dep_6 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep_name_id:6}).size
+      @dobcc_ratio_in_total_last_month_per_dep_1 =  (@dobcc_count_per_last_month_per_dep_1 / (@bd_lastmonth*@users.where(dep_name_id:1).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_last_month_per_dep_2 =  (@dobcc_count_per_last_month_per_dep_2 / (@bd_lastmonth*@users.where(dep_name_id:2).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_last_month_per_dep_3 =  (@dobcc_count_per_last_month_per_dep_3 / (@bd_lastmonth*@users.where(dep_name_id:3).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_last_month_per_dep_4 =  (@dobcc_count_per_last_month_per_dep_4 / (@bd_lastmonth*@users.where(dep_name_id:4).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_last_month_per_dep_5 =  (@dobcc_count_per_last_month_per_dep_5 / (@bd_lastmonth*@users.where(dep_name_id:5).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_last_month_per_dep_6 =  (@dobcc_count_per_last_month_per_dep_6 / (@bd_lastmonth*@users.where(dep_name_id:6).count).to_f).round(2)*100
       # ↓↓↓来月のdobcc
-      @dobcc_count_per_next_month_per_eigyou_1 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep:"営業1部"}).size
-      @dobcc_count_per_next_month_per_eigyou_2 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep:"営業2部"}).size
-      @dobcc_count_per_next_month_per_eigyou_3 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep:"営業3部"}).size
-      @dobcc_count_per_next_month_per_eigyou_4 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep:"営業4部"}).size
-      @dobcc_count_per_next_month_per_eigyou_5 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep:"営業5部"}).size
-      @dobcc_count_per_next_month_per_zaimu    = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep:"財務部"}).size
-      @dobcc_ratio_in_total_next_month_per_eigyou_1 =  (@dobcc_count_per_next_month_per_eigyou_1 / (@bd_nextmonth*@users.where(dep:"営業1部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_next_month_per_eigyou_2 =  (@dobcc_count_per_next_month_per_eigyou_2 / (@bd_nextmonth*@users.where(dep:"営業2部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_next_month_per_eigyou_3 =  (@dobcc_count_per_next_month_per_eigyou_3 / (@bd_nextmonth*@users.where(dep:"営業3部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_next_month_per_eigyou_4 =  (@dobcc_count_per_next_month_per_eigyou_4 / (@bd_nextmonth*@users.where(dep:"営業4部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_next_month_per_eigyou_5 =  (@dobcc_count_per_next_month_per_eigyou_5 / (@bd_nextmonth*@users.where(dep:"営業5部").count).to_f).round(2)*100
-      @dobcc_ratio_in_total_next_month_per_zaimu    =  (@dobcc_count_per_next_month_per_zaimu    / (@bd_nextmonth*@users.where(dep:"財務部") .count).to_f).round(2)*100
+      @dobcc_count_per_next_month_per_dep_1 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep_name_id:1}).size
+      @dobcc_count_per_next_month_per_dep_2 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep_name_id:2}).size
+      @dobcc_count_per_next_month_per_dep_3 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep_name_id:3}).size
+      @dobcc_count_per_next_month_per_dep_4 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep_name_id:4}).size
+      @dobcc_count_per_next_month_per_dep_5 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep_name_id:5}).size
+      @dobcc_count_per_next_month_per_dep_6 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep_name_id:6}).size
+      @dobcc_ratio_in_total_next_month_per_dep_1 =  (@dobcc_count_per_next_month_per_dep_1 / (@bd_nextmonth*@users.where(dep_name_id:1).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_next_month_per_dep_2 =  (@dobcc_count_per_next_month_per_dep_2 / (@bd_nextmonth*@users.where(dep_name_id:2).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_next_month_per_dep_3 =  (@dobcc_count_per_next_month_per_dep_3 / (@bd_nextmonth*@users.where(dep_name_id:3).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_next_month_per_dep_4 =  (@dobcc_count_per_next_month_per_dep_4 / (@bd_nextmonth*@users.where(dep_name_id:4).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_next_month_per_dep_5 =  (@dobcc_count_per_next_month_per_dep_5 / (@bd_nextmonth*@users.where(dep_name_id:5).count).to_f).round(2)*100
+      @dobcc_ratio_in_total_next_month_per_dep_6 =  (@dobcc_count_per_next_month_per_dep_6 / (@bd_nextmonth*@users.where(dep_name_id:6).count).to_f).round(2)*100
       respond_to do |format|
         format.html
         format.xlsx do
@@ -78,8 +78,8 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
     if user_signed_in? && current_user
       @week_days = ["日","月","火","水","木","金","土"]
       @workschedules_last_month = Workschedule.where(wdate: Time.current.last_month.all_month).where(user_id: current_user.id)
-    end
-  end
+    end #of if
+  end #of def
 
   def nonadmin_nextmonth
     if user_signed_in? && current_user
@@ -87,8 +87,8 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
       @now = Time.current
       @next_month = Time.current.next_month
       @workschedules_next_month = Workschedule.where(wdate: @next_month.all_month).where(user_id: current_user.id)
-    end
-  end
+    end #of if
+  end #of def
 
   def new
     if current_user
@@ -97,7 +97,7 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
     else
       redirect_to root_path and return
     end
-  end
+  end #of def
 
   def create
     @date = workschedule_params[:wdate]
@@ -113,11 +113,11 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
       flash[:danger]= "登録できませんでした"
       redirect_to '/workschedules/new' and return
     end
-  end
+  end #of def
 
   def edit
     @workschedule = Workschedule.find(params[:id])
-  end
+  end #of def
 
   def update
     @date = workschedule_params[:wdate]
@@ -128,31 +128,31 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
     else
       flash[:danger]= "編集できませんでした"
       redirect_to new_workschedule_path and return
-    end
-  end
+    end #of if
+  end #of def
 
   def destroy
     @workschedule = Workschedule.find(params[:id])
     @workschedule.destroy
     redirect_to root_path
-  end
+  end #of def
 
   private
       def workschedule_params
         params.require(:workschedule).permit(:wdate, :status_id).merge(user_id: current_user.id)
-      end
+      end #of def
 
       def set_users_and_user
         @users = User.all
         @user  = current_user
-      end
+      end #of def
 
       def set_statuses
         @statuses= Status.all
-      end
+      end #of def
 
       def number_of_users
-        @number_of_users = User.all.count-1
-      end
+        @number_of_users = User.all.count-1 #アドミユーザー分マイナス
+      end #of def
 
-end#of class
+end #of class

@@ -8,9 +8,9 @@
     <%= f.text_field :name, autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :部署名 %><br />
-    <%= f.text_field :dep, autofocus: true %>
+  <div class="form-group">
+    <%= f.label :部門名 %></br>
+    <%= f.collection_select :dep_name_id, @DepNames, :id, :dep %>
   </div>
 
   <div class="field">

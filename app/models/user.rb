@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :workschedules
-  belongs_to :dep_names
-  validates :name, presence: true
+  belongs_to :dep_name
+  # validates :name, presence: true
+  # validates :dep_name_id, presence: true
+
 end
