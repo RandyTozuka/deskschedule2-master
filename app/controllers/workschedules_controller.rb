@@ -1,4 +1,4 @@
-depclass WorkschedulesController < ApplicationController
+class WorkschedulesController < ApplicationController
 
 before_action :set_users_and_user, :set_statuses, :number_of_users
 
