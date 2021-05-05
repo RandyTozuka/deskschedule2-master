@@ -1,18 +1,24 @@
 <h1>adminのページ</h1>
-<h3><%= Time.current.next_month.month %>月の部門別会社都合休業割合</h3>
+<div class="admin-top">
+  <div class="item">現在の管理対象者数 <%= @number_of_users %>人 </div>
+  <div class="item">|</div>
+  <div class="item"><%= Time.current.next_month.month %>月の稼働日数 <%= @bd_nextmonth %>日</div>
+</div>
 <table class="table">
   <thead class="thead-dark" >
     <tr>
-      <th scope="coll" style="width:10%" ><%= DepName.find(1).dep %></th>
-      <th scope="coll" style="width:10%" ><%= DepName.find(2).dep %></th>
-      <th scope="coll" style="width:10%" ><%= DepName.find(3).dep %></th>
-      <th scope="coll" style="width:10%" ><%= DepName.find(4).dep %></th>
-      <th scope="coll" style="width:10%" ><%= DepName.find(5).dep %></th>
+      <th scope="coll" style="width:20%" ></th>
+      <th scope="coll" style="width:10%" ><%= DepName.find(1).dep %><br><%= @number_of_users_dep_1 %>人</th>
+      <th scope="coll" style="width:10%" ><%= DepName.find(2).dep %><br><%= @number_of_users_dep_2 %>人</th>
+      <th scope="coll" style="width:10%" ><%= DepName.find(3).dep %><br><%= @number_of_users_dep_3 %>人</th>
+      <th scope="coll" style="width:10%" ><%= DepName.find(4).dep %><br><%= @number_of_users_dep_4 %>人</th>
+      <th scope="coll" style="width:10%" ><%= DepName.find(5).dep %><br><%= @number_of_users_dep_5 %>人</th>
       <th scope="coll" style="width:10%" >合計</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <th><%= Time.current.next_month.month %>月の部門別会社都合休業割合</th>
       <td scope="row" ><%= @dobcc_ratio_in_total_next_month_per_dep_1 %> %</td>
       <td scope="row" ><%= @dobcc_ratio_in_total_next_month_per_dep_2 %> %</td>
       <td scope="row" ><%= @dobcc_ratio_in_total_next_month_per_dep_3 %> %</td>
@@ -20,13 +26,17 @@
       <td scope="row" ><%= @dobcc_ratio_in_total_next_month_per_dep_5 %> %</td>
       <td scope="row" ><%= @dobcc_ratio_in_total_next_month %> %</td>
     </tr>
+    <tr>
+      <th><%= Time.current.next_month.month %>月の部門別出社率</th>
+      <td scope="row" ><%= @in_the_office_ratio_per_next_month_per_dep_1 %> %</td>
+      <td scope="row" ><%= @in_the_office_ratio_per_next_month_per_dep_2 %> %</td>
+      <td scope="row" ><%= @in_the_office_ratio_per_next_month_per_dep_3 %> %</td>
+      <td scope="row" ><%= @in_the_office_ratio_per_next_month_per_dep_4 %> %</td>
+      <td scope="row" ><%= @in_the_office_ratio_per_next_month_per_dep_5 %> %</td>
+      <td scope="row" ><%= @in_the_office_ratio_per_next_month_in_total %> %</td>
+    </tr>
   </tbody>
 </table>
-<div class="admin-top">
-  <div class="item">現在の管理対象者数 <%= @number_of_users %>人 </div>
-  <div class="item">|</div>
-  <div class="item"><%= Time.current.next_month.month %>月の稼働日数 <%= @bd_nextmonth %>日</div>
-</div>
 <%= link_to "Excel出力",workschedules_path(format: :xlsx, type: 3),class:'btn btn-excel' %>
 <table class="workschedule_table table table-hover" >
   <thead>
