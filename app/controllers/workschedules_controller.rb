@@ -25,39 +25,33 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
       @dobcc_count_per_this_month_per_dep_3 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:3}).size
       @dobcc_count_per_this_month_per_dep_4 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:4}).size
       @dobcc_count_per_this_month_per_dep_5 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:5}).size
-      @dobcc_count_per_this_month_per_dep_6 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:6}).size
       @dobcc_ratio_in_total_this_month_per_dep_1 =  (@dobcc_count_per_this_month_per_dep_1 / (@bd_thismonth*@users.where(dep_name_id:1).count).to_f).round(2)*100
       @dobcc_ratio_in_total_this_month_per_dep_2 =  (@dobcc_count_per_this_month_per_dep_2 / (@bd_thismonth*@users.where(dep_name_id:2).count).to_f).round(2)*100
       @dobcc_ratio_in_total_this_month_per_dep_3 =  (@dobcc_count_per_this_month_per_dep_3 / (@bd_thismonth*@users.where(dep_name_id:3).count).to_f).round(2)*100
       @dobcc_ratio_in_total_this_month_per_dep_4 =  (@dobcc_count_per_this_month_per_dep_4 / (@bd_thismonth*@users.where(dep_name_id:4).count).to_f).round(2)*100
       @dobcc_ratio_in_total_this_month_per_dep_5 =  (@dobcc_count_per_this_month_per_dep_5 / (@bd_thismonth*@users.where(dep_name_id:5).count).to_f).round(2)*100
-      @dobcc_ratio_in_total_this_month_per_dep_6 =  (@dobcc_count_per_this_month_per_dep_6 / (@bd_thismonth*@users.where(dep_name_id:6).count).to_f).round(2)*100
       # ↓↓↓先月のdobcc
       @dobcc_count_per_last_month_per_dep_1 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep_name_id:1}).size
       @dobcc_count_per_last_month_per_dep_2 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep_name_id:2}).size
       @dobcc_count_per_last_month_per_dep_3 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep_name_id:3}).size
       @dobcc_count_per_last_month_per_dep_4 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep_name_id:4}).size
       @dobcc_count_per_last_month_per_dep_5 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep_name_id:5}).size
-      @dobcc_count_per_last_month_per_dep_6 = Workschedule.joins(:user).dobcc.ws_lastmonth.where(users:{dep_name_id:6}).size
       @dobcc_ratio_in_total_last_month_per_dep_1 =  (@dobcc_count_per_last_month_per_dep_1 / (@bd_lastmonth*@users.where(dep_name_id:1).count).to_f).round(2)*100
       @dobcc_ratio_in_total_last_month_per_dep_2 =  (@dobcc_count_per_last_month_per_dep_2 / (@bd_lastmonth*@users.where(dep_name_id:2).count).to_f).round(2)*100
       @dobcc_ratio_in_total_last_month_per_dep_3 =  (@dobcc_count_per_last_month_per_dep_3 / (@bd_lastmonth*@users.where(dep_name_id:3).count).to_f).round(2)*100
       @dobcc_ratio_in_total_last_month_per_dep_4 =  (@dobcc_count_per_last_month_per_dep_4 / (@bd_lastmonth*@users.where(dep_name_id:4).count).to_f).round(2)*100
       @dobcc_ratio_in_total_last_month_per_dep_5 =  (@dobcc_count_per_last_month_per_dep_5 / (@bd_lastmonth*@users.where(dep_name_id:5).count).to_f).round(2)*100
-      @dobcc_ratio_in_total_last_month_per_dep_6 =  (@dobcc_count_per_last_month_per_dep_6 / (@bd_lastmonth*@users.where(dep_name_id:6).count).to_f).round(2)*100
       # ↓↓↓来月のdobcc
       @dobcc_count_per_next_month_per_dep_1 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep_name_id:1}).size
       @dobcc_count_per_next_month_per_dep_2 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep_name_id:2}).size
       @dobcc_count_per_next_month_per_dep_3 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep_name_id:3}).size
       @dobcc_count_per_next_month_per_dep_4 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep_name_id:4}).size
       @dobcc_count_per_next_month_per_dep_5 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep_name_id:5}).size
-      @dobcc_count_per_next_month_per_dep_6 = Workschedule.joins(:user).dobcc.ws_nextmonth.where(users:{dep_name_id:6}).size
       @dobcc_ratio_in_total_next_month_per_dep_1 =  (@dobcc_count_per_next_month_per_dep_1 / (@bd_nextmonth*@users.where(dep_name_id:1).count).to_f).round(2)*100
       @dobcc_ratio_in_total_next_month_per_dep_2 =  (@dobcc_count_per_next_month_per_dep_2 / (@bd_nextmonth*@users.where(dep_name_id:2).count).to_f).round(2)*100
       @dobcc_ratio_in_total_next_month_per_dep_3 =  (@dobcc_count_per_next_month_per_dep_3 / (@bd_nextmonth*@users.where(dep_name_id:3).count).to_f).round(2)*100
       @dobcc_ratio_in_total_next_month_per_dep_4 =  (@dobcc_count_per_next_month_per_dep_4 / (@bd_nextmonth*@users.where(dep_name_id:4).count).to_f).round(2)*100
       @dobcc_ratio_in_total_next_month_per_dep_5 =  (@dobcc_count_per_next_month_per_dep_5 / (@bd_nextmonth*@users.where(dep_name_id:5).count).to_f).round(2)*100
-      @dobcc_ratio_in_total_next_month_per_dep_6 =  (@dobcc_count_per_next_month_per_dep_6 / (@bd_nextmonth*@users.where(dep_name_id:6).count).to_f).round(2)*100
       respond_to do |format|
         format.html
         format.xlsx do

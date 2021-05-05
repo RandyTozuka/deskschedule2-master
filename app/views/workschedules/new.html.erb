@@ -8,7 +8,7 @@
     </div>
     <div class="form-group">
       <%= f.label :勤務ステータス %></br>
-      <%= f.collection_select :status_id, @statuses, :id, :status %>
+      <%= f.collection_select :status_id, Status.all, :id, :status %>
     </div>
     <div class="form-group">
       <%= f.submit "予定投入",class: "button-create" %>

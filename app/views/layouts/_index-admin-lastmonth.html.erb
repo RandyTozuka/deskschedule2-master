@@ -3,13 +3,12 @@
 <table class="table">
   <thead class="thead-dark" >
     <tr>
-      <th scope="coll" style="width:10%" >営業1部</th>
-      <th scope="coll" style="width:10%" >営業2部</th>
-      <th scope="coll" style="width:10%" >営業3部</th>
-      <th scope="coll" style="width:10%" >営業4部</th>
-      <th scope="coll" style="width:10%" >営業5部</th>
-      <th scope="coll" style="width:10%" >財務部</th>
-      <th scope="coll" style="width:10%" >全体</th>
+      <th scope="coll" style="width:10%" ><%= DepName.find(1).dep %></th>
+      <th scope="coll" style="width:10%" ><%= DepName.find(2).dep %></th>
+      <th scope="coll" style="width:10%" ><%= DepName.find(3).dep %></th>
+      <th scope="coll" style="width:10%" ><%= DepName.find(4).dep %></th>
+      <th scope="coll" style="width:10%" ><%= DepName.find(5).dep %></th>
+      <th scope="coll" style="width:10%" >合計</th>
     </tr>
   </thead>
   <tbody>
@@ -19,7 +18,6 @@
       <td scope="row" ><%= @dobcc_ratio_in_total_last_month_per_dep_3 %> %</td>
       <td scope="row" ><%= @dobcc_ratio_in_total_last_month_per_dep_4 %> %</td>
       <td scope="row" ><%= @dobcc_ratio_in_total_last_month_per_dep_5 %> %</td>
-      <td scope="row" ><%= @dobcc_ratio_in_total_last_month_per_dep_6 %> %</td>
       <td scope="row" ><%= @dobcc_ratio_in_total_last_month %> %</td>
     </tr>
   </tbody>
@@ -45,7 +43,7 @@
     <tr>
       <td><%= User.find(f.user_id).idnum  %></td>
       <td><%= @users.find(f.user_id).email  %></td>
-      <td><%= User.find(f.user_id).dep  %></td>
+      <td><%= DepName.find(User.find(f.user_id).dep_name_id).dep  %></td>
       <td><%= f.wdate  %></td>
       <td><%= @statuses.find(f.status_id).status %></td>
     </tr>

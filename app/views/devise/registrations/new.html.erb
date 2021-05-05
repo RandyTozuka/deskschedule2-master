@@ -10,7 +10,7 @@
 
   <div class="form-group">
     <%= f.label :部門名 %></br>
-    <%= f.collection_select :dep_name_id, @DepNames, :id, :dep %>
+    <%= f.collection_select :dep_name_id, DepName.all, :id, :dep %>
   </div>
 
   <div class="field">
