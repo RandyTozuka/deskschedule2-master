@@ -1,8 +1,23 @@
 <h1>adminのページ</h1>
 <div class="admin-top">
-  <div class="item">現在の管理対象者数 <%= @number_of_users %>人 </div>
-  <div class="item">|</div>
-  <div class="item"><%= Time.current.next_month.month %>月の稼働日数 <%= @bd_nextmonth %>日</div>
+  <table>
+    <tr>
+      <th class="item" >現在の本部管理対象者数</th>
+      <th><%= DepName.find(1).dep %></th>
+      <th><%= DepName.find(2).dep %></th>
+      <th><%= DepName.find(3).dep %></th>
+      <th><%= DepName.find(4).dep %></th>
+      <th><%= DepName.find(5).dep %></th>
+    </tr>
+    <tr>
+      <td class="item" ><%= @number_of_users %>人</td>
+      <td><%= @number_of_users_dep_1 %>人</td>
+      <td><%= @number_of_users_dep_2 %>人</td>
+      <td><%= @number_of_users_dep_3 %>人</td>
+      <td><%= @number_of_users_dep_4 %>人</td>
+      <td><%= @number_of_users_dep_5 %>人</td>
+    </tr>
+  </table>
 </div>
 <table class="table">
   <thead class="thead-dark" >
