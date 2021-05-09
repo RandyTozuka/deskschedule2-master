@@ -25,7 +25,7 @@
   #   user.save
   # end
 
-  dep_namesの選択肢
+  # dep_namesの選択肢
     DepName.create!(dep: '企画管理部')
     DepName.create!(dep: 'グローバルセキュリティーGr')
     DepName.create!(dep: '官民連携部')
