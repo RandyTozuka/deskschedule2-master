@@ -48,19 +48,20 @@ gem "bootstrap-sass", "~>3.3.6"
 # gem "jquery-rails"
 # gem "jquery-ui-rails"
 
-# pry
-gem 'pry-rails'
-# kaminari(pagenation)
-gem 'kaminari'
+gem 'pry-rails' # pry
+gem 'kaminari' # kaminari(pagenation)
+
 #  axlsx_rails 参考：https://qiita.com/necojackarc/items/0dbd672b2888c30c5a38#gemfile
 gem 'rubyzip', '>= 1.2.1'
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails'
-# business_time 参考:https://qiita.com/hituziando/items/2bf6dbb29280efb4ad1c
-gem 'business_time'
+
+gem 'business_time' # https://qiita.com/hituziando/items/2bf6dbb29280efb4ad1c
 
 gem 'hirb'          # 出力結果を表として出力するgem
 gem 'hirb-unicode'  # マルチバイト文字の表示を補正するgem
+
+gem 'week_of_month' # https://github.com/sachin87/week-of-month
 #------------------------------------------------------------------
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

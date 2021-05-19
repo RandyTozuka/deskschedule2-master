@@ -1,30 +1,35 @@
 class WorkschedulesController < ApplicationController
 
-before_action :set_users_and_user, :set_statuses, :number_of_users
+before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calendar, :set_users_per_dep
 
   def index
     # bd : business days(稼働日)
     # dobcc : day off by company circumstances(会社都合休業)
     # ws : work schedule
     if user_signed_in? && current_user.admin?#adminユーザーのindex
+      # ↓↓↓　月毎の全体勤務予定
       @ws_thismonth = Workschedule.ws_thismonth
       @ws_lastmonth = Workschedule.ws_lastmonth
       @ws_nextmonth = Workschedule.ws_nextmonth
+      # ↓↓↓　月毎の稼働日
       @bd_thismonth = Date.today.beginning_of_month.business_days_until(Date.today.end_of_month)
       @bd_lastmonth = Date.today.last_month.beginning_of_month.business_days_until(Date.today.last_month.end_of_month)
       @bd_nextmonth = Date.today.next_month.beginning_of_month.business_days_until(Date.today.next_month.end_of_month)
-      @dobcc_count_per_this_month = Workschedule.dobcc.where(wdate: Date.today.all_month).count
-      @dobcc_count_per_last_month = Workschedule.dobcc.where(wdate: Date.today.last_month.all_month).count
-      @dobcc_count_per_next_month = Workschedule.dobcc.where(wdate: Date.today.next_month.all_month).count
+      # ↓↓↓　月毎の会社都合休業日の数
+      @dobcc_count_per_this_month = Workschedule.dobcc.ws_thismonth.count
+      @dobcc_count_per_last_month = Workschedule.ws_lastmonth.count
+      @dobcc_count_per_next_month = Workschedule.dobcc.ws_nextmonth.count
+      # ↓↓↓　月毎の会社都合休業日の率
       @dobcc_ratio_in_total_this_month =  (@dobcc_count_per_this_month / (@bd_thismonth*@number_of_users).to_f).round(2)*100
       @dobcc_ratio_in_total_last_month =  (@dobcc_count_per_last_month / (@bd_lastmonth*@number_of_users).to_f).round(2)*100
       @dobcc_ratio_in_total_next_month =  (@dobcc_count_per_next_month / (@bd_nextmonth*@number_of_users).to_f).round(2)*100
-      # ↓↓↓今月のdobcc
+      # ↓↓↓部門別今月のdobccの数
       @dobcc_count_per_this_month_per_dep_1 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:1}).size
       @dobcc_count_per_this_month_per_dep_2 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:2}).size
       @dobcc_count_per_this_month_per_dep_3 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:3}).size
       @dobcc_count_per_this_month_per_dep_4 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:4}).size
       @dobcc_count_per_this_month_per_dep_5 = Workschedule.joins(:user).dobcc.ws_thismonth.where(users:{dep_name_id:5}).size
+      # ↓↓↓部門別今月のdobccの率
       @dobcc_ratio_in_total_this_month_per_dep_1 =  (@dobcc_count_per_this_month_per_dep_1 / (@bd_thismonth*@users.where(dep_name_id:1).count).to_f).round(2)*100
       @dobcc_ratio_in_total_this_month_per_dep_2 =  (@dobcc_count_per_this_month_per_dep_2 / (@bd_thismonth*@users.where(dep_name_id:2).count).to_f).round(2)*100
       @dobcc_ratio_in_total_this_month_per_dep_3 =  (@dobcc_count_per_this_month_per_dep_3 / (@bd_thismonth*@users.where(dep_name_id:3).count).to_f).round(2)*100
@@ -91,6 +96,41 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
       @in_the_office_ratio_per_next_month_per_dep_5 = (@in_the_office_count_per_next_month_per_dep_5/(@bd_nextmonth*@number_of_users_dep_5).to_f).round(2)*100
       @in_the_office_count_per_next_month_in_total  = Workschedule.joins(:user).in_the_office.ws_nextmonth.size
       @in_the_office_ratio_per_next_month_in_total  = (@in_the_office_count_per_next_month_in_total/(@bd_nextmonth*@number_of_users).to_f).round(2)*100
+
+      # 後で消す事
+      # @ws_thismonth_dep_name_id_1 = Workschedule.joins(:user).ws_thismonth.where(users:{dep_name_id:1})
+      # @ws_thismonth_dep_name_id_2 = Workschedule.joins(:user).ws_thismonth.where(users:{dep_name_id:2})
+      # @ws_thismonth_dep_name_id_3 = Workschedule.joins(:user).ws_thismonth.where(users:{dep_name_id:3})
+      # @ws_thismonth_dep_name_id_4 = Workschedule.joins(:user).ws_thismonth.where(users:{dep_name_id:4})
+      # @ws_thismonth_dep_name_id_5 = Workschedule.joins(:user).ws_thismonth.where(users:{dep_name_id:5})
+
+      # 部門毎出社率が高い日の抽出
+      @high_expectation_days_dep_name_id_1 = Workschedule.joins(:user)
+              .ws_thismonth.in_the_office     # 今月レコードの中から出社を抽出
+              .where(users:{dep_name_id:1})   # 部門1を抽出
+              .group(:wdate).count            # wdateでグループにしてハッシュ化
+              .select{|k,v| v > @number_of_users_dep_1 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
+      @high_expectation_days_dep_name_id_2 = Workschedule.joins(:user)
+              .ws_thismonth.in_the_office     # 今月レコードの中から出社を抽出
+              .where(users:{dep_name_id:2})   # 部門1を抽出
+              .group(:wdate).count            # wdateでグループにしてハッシュ化
+              .select{|k,v| v > @number_of_users_dep_2 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
+      @high_expectation_days_dep_name_id_3 = Workschedule.joins(:user)
+              .ws_thismonth.in_the_office     # 今月レコードの中から出社を抽出
+              .where(users:{dep_name_id:3})   # 部門1を抽出
+              .group(:wdate).count            # wdateでグループにしてハッシュ化
+              .select{|k,v| v > @number_of_users_dep_3 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
+      @high_expectation_days_dep_name_id_4 = Workschedule.joins(:user)
+              .ws_thismonth.in_the_office     # 今月レコードの中から出社を抽出
+              .where(users:{dep_name_id:4})   # 部門1を抽出
+              .group(:wdate).count            # wdateでグループにしてハッシュ化
+              .select{|k,v| v > @number_of_users_dep_4 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
+      @high_expectation_days_dep_name_id_5 = Workschedule.joins(:user)
+              .ws_thismonth.in_the_office     # 今月レコードの中から出社を抽出
+              .where(users:{dep_name_id:5})   # 部門1を抽出
+              .group(:wdate).count            # wdateでグループにしてハッシュ化
+              .select{|k,v| v > @number_of_users_dep_5 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
+
       respond_to do |format|
         format.html
         format.xlsx do
@@ -191,6 +231,17 @@ before_action :set_users_and_user, :set_statuses, :number_of_users
         @number_of_users_dep_3 = User.where(dep_name_id:3).count
         @number_of_users_dep_4 = User.where(dep_name_id:4).count
         @number_of_users_dep_5 = User.where(dep_name_id:5).count
+      end #of def
+
+      def set_calendar
+        @calendar_this_month = Array(Date.current.beginning_of_month..Date.current.end_of_month)
+        @calendar_last_month = Array(Date.current.last_month.beginning_of_month..Date.current.last_month.end_of_month)
+        @calendar_next_month = Array(Date.current.next_month.beginning_of_month..Date.current.next_month.end_of_month)
+      end #of def
+
+      def set_users_per_dep
+        @dep1_users = User.where(dep_name_id:1)
+
       end #of def
 
 end #of class

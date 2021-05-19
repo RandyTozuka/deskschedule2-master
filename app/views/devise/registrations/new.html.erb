@@ -14,6 +14,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :従業員コード %><br />
+    <%= f.text_field :idnum, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>

@@ -17,3 +17,5 @@ module Deskschedule2
     # the framework and any gems in your application.
   end
 end
+
+WeekOfMonth.configuration.monday_active = true #https://github.com/sachin87/week-of-month
