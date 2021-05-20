@@ -1,6 +1,6 @@
 <!-- モーダル -->
 <!-- Modal 1-->
-<div class="modal fade" id="Modal_dep_name_id_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_dep_name_id_1_this_month" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,7 +10,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= @high_expectation_days_dep_name_id_1.keys %>
+        <%= @high_expectation_days_dep_name_id_1_thismonth.keys %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -20,7 +20,7 @@
 </div>
 <!-- ーーーーーー -->
 <!-- Modal 2-->
-<div class="modal fade" id="Modal_dep_name_id_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_dep_name_id_2_this_month" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -30,7 +30,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= @high_expectation_days_dep_name_id_2.keys %>
+        <%= @high_expectation_days_dep_name_id_2_thismonth.keys %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -40,7 +40,7 @@
 </div>
 <!-- ーーーーーー -->
 <!-- Modal 3-->
-<div class="modal fade" id="Modal_dep_name_id_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_dep_name_id_3_this_month" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -50,7 +50,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= @high_expectation_days_dep_name_id_3.keys %>
+        <%= @high_expectation_days_dep_name_id_3_thismonth.keys %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -60,7 +60,7 @@
 </div>
 <!-- ーーーーーー -->
 <!-- Modal 4-->
-<div class="modal fade" id="Modal_dep_name_id_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_dep_name_id_4_this_month" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -70,7 +70,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= @high_expectation_days_dep_name_id_4.keys %>
+        <%= @high_expectation_days_dep_name_id_4_thismonth.keys %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -80,7 +80,7 @@
 </div>
 <!-- ーーーーーー -->
 <!-- Modal 5-->
-<div class="modal fade" id="Modal_dep_name_id_5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal_dep_name_id_5_this_month" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -90,7 +90,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= @high_expectation_days_dep_name_id_5.keys%>
+        <%= @high_expectation_days_dep_name_id_5_thismonth.keys%>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -105,27 +105,27 @@
     <tr>
       <th align="center" ></th>
       <th align="center">
-        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#Modal_dep_name_id_1">
+        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#Modal_dep_name_id_1_this_month">
           <%= DepName.find(1).dep  %>
         </button>
       </th>
       <th align="center">
-        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#Modal_dep_name_id_2">
+        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#Modal_dep_name_id_2_this_month">
           <%= DepName.find(2).dep  %>
         </button>
       </th>
       <th align="center">
-        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#Modal_dep_name_id_3">
+        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#Modal_dep_name_id_3_this_month">
           <%= DepName.find(3).dep  %>
         </button>
       </th>
       <th align="center">
-        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#Modal_dep_name_id_4">
+        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#Modal_dep_name_id_4_this_month">
           <%= DepName.find(4).dep  %>
         </button>
       </th>
       <th align="center">
-        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#Modal_dep_name_id_5">
+        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#Modal_dep_name_id_5_this_month">
           <%= DepName.find(5).dep  %>
         </button>
       </th>

@@ -105,28 +105,55 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
       # @ws_thismonth_dep_name_id_5 = Workschedule.joins(:user).ws_thismonth.where(users:{dep_name_id:5})
 
       # 部門毎出社率が高い日の抽出
-      @high_expectation_days_dep_name_id_1 = Workschedule.joins(:user)
+      # 当月分
+      @high_expectation_days_dep_name_id_1_thismonth = Workschedule.joins(:user)
               .ws_thismonth.in_the_office     # 今月レコードの中から出社を抽出
               .where(users:{dep_name_id:1})   # 部門1を抽出
               .group(:wdate).count            # wdateでグループにしてハッシュ化
               .select{|k,v| v > @number_of_users_dep_1 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
-      @high_expectation_days_dep_name_id_2 = Workschedule.joins(:user)
+      @high_expectation_days_dep_name_id_2_thismonth = Workschedule.joins(:user)
               .ws_thismonth.in_the_office     # 今月レコードの中から出社を抽出
               .where(users:{dep_name_id:2})   # 部門1を抽出
               .group(:wdate).count            # wdateでグループにしてハッシュ化
               .select{|k,v| v > @number_of_users_dep_2 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
-      @high_expectation_days_dep_name_id_3 = Workschedule.joins(:user)
+      @high_expectation_days_dep_name_id_3_thismonth = Workschedule.joins(:user)
               .ws_thismonth.in_the_office     # 今月レコードの中から出社を抽出
               .where(users:{dep_name_id:3})   # 部門1を抽出
               .group(:wdate).count            # wdateでグループにしてハッシュ化
               .select{|k,v| v > @number_of_users_dep_3 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
-      @high_expectation_days_dep_name_id_4 = Workschedule.joins(:user)
+      @high_expectation_days_dep_name_id_4_thismonth = Workschedule.joins(:user)
               .ws_thismonth.in_the_office     # 今月レコードの中から出社を抽出
               .where(users:{dep_name_id:4})   # 部門1を抽出
               .group(:wdate).count            # wdateでグループにしてハッシュ化
               .select{|k,v| v > @number_of_users_dep_4 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
-      @high_expectation_days_dep_name_id_5 = Workschedule.joins(:user)
+      @high_expectation_days_dep_name_id_5_thismonth = Workschedule.joins(:user)
               .ws_thismonth.in_the_office     # 今月レコードの中から出社を抽出
+              .where(users:{dep_name_id:5})   # 部門1を抽出
+              .group(:wdate).count            # wdateでグループにしてハッシュ化
+              .select{|k,v| v > @number_of_users_dep_5 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
+      # 来月分
+      @high_expectation_days_dep_name_id_1_nextmonth = Workschedule.joins(:user)
+              .ws_nextmonth.in_the_office     # 今月レコードの中から出社を抽出
+              .where(users:{dep_name_id:1})   # 部門1を抽出
+              .group(:wdate).count            # wdateでグループにしてハッシュ化
+              .select{|k,v| v > @number_of_users_dep_1 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
+      @high_expectation_days_dep_name_id_2_nextmonth = Workschedule.joins(:user)
+              .ws_nextmonth.in_the_office     # 今月レコードの中から出社を抽出
+              .where(users:{dep_name_id:2})   # 部門1を抽出
+              .group(:wdate).count            # wdateでグループにしてハッシュ化
+              .select{|k,v| v > @number_of_users_dep_2 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
+      @high_expectation_days_dep_name_id_3_nextmonth = Workschedule.joins(:user)
+              .ws_nextmonth.in_the_office     # 今月レコードの中から出社を抽出
+              .where(users:{dep_name_id:3})   # 部門1を抽出
+              .group(:wdate).count            # wdateでグループにしてハッシュ化
+              .select{|k,v| v > @number_of_users_dep_3 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
+      @high_expectation_days_dep_name_id_4_nextmonth = Workschedule.joins(:user)
+              .ws_nextmonth.in_the_office     # 今月レコードの中から出社を抽出
+              .where(users:{dep_name_id:4})   # 部門1を抽出
+              .group(:wdate).count            # wdateでグループにしてハッシュ化
+              .select{|k,v| v > @number_of_users_dep_4 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
+      @high_expectation_days_dep_name_id_5_nextmonth = Workschedule.joins(:user)
+              .ws_nextmonth.in_the_office     # 今月レコードの中から出社を抽出
               .where(users:{dep_name_id:5})   # 部門1を抽出
               .group(:wdate).count            # wdateでグループにしてハッシュ化
               .select{|k,v| v > @number_of_users_dep_5 * 0.5} #hash化したvalueの中から半分以上出ている日を抽出
