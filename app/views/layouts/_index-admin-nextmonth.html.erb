@@ -10,7 +10,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= @high_expectation_days_dep_name_id_1_nextmonth.keys %>
+        <% @high_expectation_days_dep_name_id_1_nextmonth.each do |d|  %>
+          <%= Time.parse(d.to_s).strftime("%m月%d日") %>
+          <%= "(#{@week_days[Time.parse(d.to_s).wday]}), " %>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -30,7 +33,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= @high_expectation_days_dep_name_id_2_nextmonth.keys %>
+        <% @high_expectation_days_dep_name_id_2_nextmonth.each do |d|  %>
+          <%= Time.parse(d.to_s).strftime("%m月%d日") %>
+          <%= "(#{@week_days[Time.parse(d.to_s).wday]}), " %>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -50,7 +56,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= @high_expectation_days_dep_name_id_3_nextmonth.keys %>
+        <% @high_expectation_days_dep_name_id_3_nextmonth.each do |d|  %>
+          <%= Time.parse(d.to_s).strftime("%m月%d日") %>
+          <%= "(#{@week_days[Time.parse(d.to_s).wday]}), " %>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -70,7 +79,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= @high_expectation_days_dep_name_id_4_nextmonth.keys %>
+        <% @high_expectation_days_dep_name_id_4_nextmonth.each do |d|  %>
+          <%= Time.parse(d.to_s).strftime("%m月%d日") %>
+          <%= "(#{@week_days[Time.parse(d.to_s).wday]}), " %>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -90,7 +102,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= @high_expectation_days_dep_name_id_5_nextmonth.keys%>
+        <% @high_expectation_days_dep_name_id_5_nextmonth.each do |d|  %>
+          <%= Time.parse(d.to_s).strftime("%m月%d日") %>
+          <%= "(#{@week_days[Time.parse(d.to_s).wday]})  " %>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
