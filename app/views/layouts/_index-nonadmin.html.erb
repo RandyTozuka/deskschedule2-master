@@ -10,10 +10,13 @@
         <button type="button" name="button" class="btn btn-info" id="nonadmin_nextmonth_btn" >来月</button>
       </div>
       <ul class="list">
-        <li class="namonth nonadmin_lastmonth <%= 'active' if params[:type]==1 %>"><%= render 'layouts/index-nonadmin-lastmonth' %></li>
+        <li class="namonth nonadmin_lastmonth <%= 'active' if @display_type < Time.current.month %>"><%= render 'layouts/index-nonadmin-lastmonth' %></li>
         <li class="namonth nonadmin_thismonth active"><%= render 'layouts/index-nonadmin-thismonth' %></li>
-        <li class="namonth nonadmin_nextmonth" <%= 'active' if params[:type]==3 %>><%= render 'layouts/index-nonadmin-nextmonth' %></li>
+        <li class="namonth nonadmin_nextmonth <%= 'active' if @display_type > Time.current.month %>"><%= render 'layouts/index-nonadmin-nextmonth' %></li>
       </ul>
     <% end %>
   </div>
 </div>
+
+<%# <%= 'active' if @display_type < Time.current.month %> %>
+<%# <%= 'active' if @display_type > Time.current.month %> %>
