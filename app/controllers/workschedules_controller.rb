@@ -196,7 +196,6 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
 
   def create
     @date = workschedule_params[:wdate]
-    # binding.pry
     # すでに予定投入済みの日に新たに予定をいれる事を防止
     if Workschedule.where(user_id: @user.id).where(wdate: @date).any?
       flash[:danger]= "その日はすでに予定投入済みです"
@@ -210,10 +209,6 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
       redirect_to '/workschedules/new' and return
     end #of if
   end #of def
-
-  def paracatch
-    @display_type = Time.parse(workschedule_params[:wdate]).month
-  end
 
   def edit
     @workschedule = Workschedule.find(params[:id])
