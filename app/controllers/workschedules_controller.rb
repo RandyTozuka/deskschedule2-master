@@ -193,16 +193,27 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
 
   def create
     @date = workschedule_params[:wdate]
-    # binding.pry
     # すでに予定投入済みの日に新たに予定をいれる事を防止
     if Workschedule.where(user_id: @user.id).where(wdate: @date).any?
       flash[:danger]= "その日はすでに予定投入済みです"
       redirect_to root_path and return
     end
     if Workschedule.create(workschedule_params)
-      # binding.pry
       flash[:success]= "登録できました"
-      redirect_to root_path and return
+      case Time.parse(workschedule_params[:wdate]).month
+      # 先月
+      when Time.parse(workschedule_params[:wdate]).month > Time.current.month then
+          redirect_to root_path(type:1) and return
+      # 今月
+      when Time.parse(workschedule_params[:wdate]).month == Time.current.month then
+          redirect_to root_path(type:2) and return
+      # 来月
+      when Time.parse(workschedule_params[:wdate]).month < Time.current.month then
+        binding.pry
+        redirect_to root_path(type:3) and return
+      else
+        redirect_to root_path and return
+    end
     else
       flash[:danger]= "登録できませんでした"
       redirect_to '/workschedules/new' and return

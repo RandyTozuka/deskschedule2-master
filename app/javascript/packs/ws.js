@@ -35,7 +35,7 @@ $(function(){
 // https://www.tam-tam.co.jp/tipsnote/javascript/post9911.html
 // https://www.sejuku.net/blog/22925
 $(function(){
-  $('#submit').click(function(){
+  $('#submit_new_ws').click(function(){
     //今日の日付データを変数todayに格納
     var today = new Date();
     //月を取得
