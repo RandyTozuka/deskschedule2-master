@@ -166,7 +166,8 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
       @ws_lastmonth_na = Workschedule.where(wdate:Date.today.last_month.all_month).where(user_id: current_user.id)
       @ws_nextmonth_na = Workschedule.where(wdate:Date.today.next_month.all_month).where(user_id: current_user.id)
       # テスト------------------------------------------------------
-      @display_type = Time.parse(workschedule_params[:wdate]).month
+      binding.pry
+        @display_type = Time.parse(workschedule_get_params[:wdate]).month
       # テスト------------------------------------------------------
     end#of if
   end#of def
@@ -203,7 +204,9 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
     end
     if Workschedule.create(workschedule_params)
       flash[:success]= "登録できました"
-        redirect_to root_path(workschedule:workschedule_params) and return
+        # redirect_to root_path(workschedule:workschedule_params) and return
+        redirect_to root_path(wdate: workschedule_params[:wdate]) and return
+        # redirect_to controller: 'workschedules', action: 'index', wdate: workschedule_params[:wdate] and return
     else
       flash[:danger]= "登録できませんでした"
       redirect_to '/workschedules/new' and return
@@ -236,6 +239,11 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
       def workschedule_params
         params.require(:workschedule).permit(:wdate, :status_id).merge(user_id: current_user.id)
       end #of def
+
+      def workschedule_get_params
+        # params.require(:workschedule).permit(:wdate, :status_id)
+        params.permit(:wdate)
+      end
 
       def set_users_and_user
         @users = User.all
