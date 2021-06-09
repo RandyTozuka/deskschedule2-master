@@ -166,8 +166,15 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
       @ws_lastmonth_na = Workschedule.where(wdate:Date.today.last_month.all_month).where(user_id: current_user.id)
       @ws_nextmonth_na = Workschedule.where(wdate:Date.today.next_month.all_month).where(user_id: current_user.id)
       # テスト------------------------------------------------------
-      binding.pry
+      if workschedule_get_params[:wdate].nil?
+        @display_type = Time.current.month
+      elsif Time.parse(workschedule_get_params[:wdate]).month > Time.current.next_month.month then
+        @display_type = Time.current.month
+      elsif Time.parse(workschedule_get_params[:wdate]).month < Time.current.last_month.month then
+        @display_type = Time.current.month
+      else
         @display_type = Time.parse(workschedule_get_params[:wdate]).month
+      end
       # テスト------------------------------------------------------
     end#of if
   end#of def
