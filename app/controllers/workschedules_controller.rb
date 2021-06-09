@@ -160,12 +160,12 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
           response.headers['Content-Disposition'] = "attachment; filename=#{Date.today}.xlsx"
         end#of do
       end#of do
-    end#of if
+    end #of if
     if user_signed_in? && current_user #一般ユーザーのindex
       @ws_thismonth_na = Workschedule.where(wdate:Date.today.all_month).where(user_id: current_user.id)
       @ws_lastmonth_na = Workschedule.where(wdate:Date.today.last_month.all_month).where(user_id: current_user.id)
       @ws_nextmonth_na = Workschedule.where(wdate:Date.today.next_month.all_month).where(user_id: current_user.id)
-      # テスト------------------------------------------------------
+      # 予定投入後の画面遷移を制御------------------------------------
       if workschedule_get_params[:wdate].nil?
         @display_type = Time.current.month
       elsif Time.parse(workschedule_get_params[:wdate]).month > Time.current.next_month.month then
@@ -175,9 +175,9 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
       else
         @display_type = Time.parse(workschedule_get_params[:wdate]).month
       end
-      # テスト------------------------------------------------------
-    end#of if
-  end#of def
+      # ----------------------------------------------------------
+    end #of if
+  end #of def
 
   def nonadmin_lastmonth
     if user_signed_in? && current_user
