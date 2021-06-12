@@ -248,7 +248,6 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
       end #of def
 
       def workschedule_get_params
-        # params.require(:workschedule).permit(:wdate, :status_id)
         params.permit(:wdate)
       end
 
