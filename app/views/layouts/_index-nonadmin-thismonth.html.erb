@@ -1,17 +1,30 @@
+<%= javascript_pack_tag 'ws' %>
 <h3><%= Date.today.month %>月の勤務予定</h3>
 <table class="workschedule_table table table-hover" >
   <thead>
     <tr>
-      <th style="width:40%">日時</th>
-      <th style="width:30%">勤務携帯</th>
-      <th style="width:30%">削除</th>
+      <th style="width:20%">日時</th>
+      <th style="width:20%">勤務形態</th>
+      <th style="width:20%">体温（午前）</th>
+      <th style="width:20%">体温（午後）</th>
+      <th style="width:20%">削除</th>
     </tr>
   </thead>
   <% @ws_thismonth_na.each do |w|  %>
   <tbody>
-    <tr>
+    <tr data-href= "/workschedules/<%= w.id %>/edit" >
       <td><%= w.wdate.strftime("%Y年%m月%d日(#{@week_days[w.wdate.wday]})") %></td>
       <td><%= link_to Status.find(w.status_id).status, edit_workschedule_path(w) %></td>
+      <% if w.body_temp_am.nil?%>
+        <td><%= link_to "---", edit_workschedule_path(w) %> ℃</td>
+      <% else %>
+        <td><%= link_to w.body_temp_am, edit_workschedule_path(w) %> ℃</td>
+      <% end %>
+      <% if w.body_temp_pm.nil?%>
+        <td><%= link_to "---", edit_workschedule_path(w) %> ℃</td>
+      <% else %>
+        <td><%= link_to w.body_temp_pm, edit_workschedule_path(w) %> ℃</td>
+      <% end %>
       <td><%= link_to "予定削除", workschedule_path(w), method: :delete, data:{confirm:"削除してよろしいですか?"} %></td>
     </tr>
   </tbody>

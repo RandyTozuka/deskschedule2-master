@@ -211,9 +211,7 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
     end
     if Workschedule.create(workschedule_params)
       flash[:success]= "登録できました"
-        # redirect_to root_path(workschedule:workschedule_params) and return
         redirect_to root_path(wdate: workschedule_params[:wdate]) and return
-        # redirect_to controller: 'workschedules', action: 'index', wdate: workschedule_params[:wdate] and return
     else
       flash[:danger]= "登録できませんでした"
       redirect_to '/workschedules/new' and return
@@ -225,14 +223,21 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
   end #of def
 
   def update
-    @date = workschedule_params[:wdate]
     @workschedule = Workschedule.find(params[:id])
+    @date = workschedule_params[:wdate]
+    @body_temp_am = workschedule_params[:body_temp_am].to_f
+    @body_temp_pm = workschedule_params[:body_temp_pm].to_f
+    if @workschedule.update(workschedule_params) and
+      @body_temp_am >= 37.5 or @body_temp_pm >= 37.5
+      flash[:danger]= "体温が基準値を超えています。至急上司に報告してください！"
+      redirect_to root_path and return
+    end
     if @workschedule.update(workschedule_params)
       flash[:success]= "編集できました"
       redirect_to root_path and return
     else
       flash[:danger]= "編集できませんでした"
-      redirect_to new_workschedule_path and return
+      redirect_to root_path and return
     end #of if
   end #of def
 
@@ -244,7 +249,7 @@ before_action :set_users_and_user, :set_statuses, :number_of_users, :set_calenda
 
   private
       def workschedule_params
-        params.require(:workschedule).permit(:wdate, :status_id).merge(user_id: current_user.id)
+        params.require(:workschedule).permit(:wdate, :status_id, :body_temp_am, :body_temp_pm).merge(user_id: current_user.id)
       end #of def
 
       def workschedule_get_params

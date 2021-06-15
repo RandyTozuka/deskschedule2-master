@@ -9,8 +9,20 @@
       <%= f.label :勤務ステータス %></br>
       <%= f.collection_select :status_id, @statuses, :id, :status %>
     </div>
+    <% if @workschedule.wdate <= Date.today  %>
+      <div class="body-temps">
+        <div class="form-group">
+          <%= f.label :体温（午前） %></br>
+          <%= f.number_field :body_temp_am, step: "0.1", min: 30.0, max: 45.0 %> ℃
+        </div>
+        <div class="form-group">
+          <%= f.label :体温（午後） %></br>
+          <%= f.number_field :body_temp_pm, step: "0.1", min: 30.0, max: 45.0 %> ℃
+        </div>
+      </div>
+    <% end %>
     <div class="form-group">
-      <%= f.submit "予定編集投入",class: "button-create" %>
+      <%= f.submit "投入",class: "button-create" %>
     </div>
     <div class="form-group">
       <%= link_to "予定削除", workschedule_path(@workschedule), method: :delete, data:{confirm:"削除してよろしいですか?"} %>
