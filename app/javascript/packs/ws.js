@@ -31,6 +31,7 @@ $(function(){
   })
 });
   // ユーザーページ - テーブルの行全体を選択可能に
+  //http://kachibito.net/snippets/table-tr-link-clickable
   jQuery(function($) {
     //data-hrefの属性を持つtrを選択しclassにclickableを付加
     $('tr[data-href]').addClass('clickable')
