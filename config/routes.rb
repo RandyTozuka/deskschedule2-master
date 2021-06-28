@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       get "nonadmin_nextmonth"
     end
   end
+  ## 開発環境用letter_opener
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
